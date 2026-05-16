@@ -1,0 +1,23 @@
+# WordPress Standard Ignores
+node_modules/
+dist/
+vendor/
+*.log
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Build Artifacts
+__pycache__/
+*.zip
+
+# IDEs & Tools
+.vscode/
+.idea/
+.project
+.settings/
+.gemini/
+.agent/
+brain/
+.cursor/
+.history/

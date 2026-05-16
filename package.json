@@ -1,0 +1,16 @@
+{
+  "name": "vonseo",
+  "version": "2.2.7",
+  "description": "Premium Lightweight SEO Toolkit for WordPress",
+  "main": "vonseo.php",
+  "scripts": {
+    "release": "python scripts/release.py"
+  },
+  "keywords": [
+    "seo",
+    "wordpress",
+    "voncms"
+  ],
+  "author": "Vondereich",
+  "license": "GPL-3.0-or-later"
+}

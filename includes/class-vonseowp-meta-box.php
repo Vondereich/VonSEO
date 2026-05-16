@@ -1,0 +1,146 @@
+<?php
+/**
+ * Per-Post/Page Meta Box for custom SEO
+ */
+if (!defined('ABSPATH')) exit;
+
+if (false) {
+    require_once dirname(__DIR__) . '/_wp_stubs.php';
+}
+
+
+
+
+class VonSEOWP_Meta_Box {
+
+    public function __construct() {
+        add_action('add_meta_boxes', array($this, 'add_meta_box'));
+        add_action('save_post', array($this, 'save_meta_box'));
+        add_action('admin_enqueue_scripts', array($this, 'enqueue_assets'));
+    }
+
+    public function enqueue_assets(string $hook): void {
+        if ($hook !== 'post.php' && $hook !== 'post-new.php') return;
+        wp_enqueue_media();
+        wp_enqueue_style('vonseowp-metabox-css', VONSEOWP_URL . 'admin/css/vonseowp-admin.css', array(), VONSEOWP_VERSION);
+        wp_enqueue_style('vonseowp-sidebar-css', VONSEOWP_URL . 'admin/css/vonseowp-sidebar.css', array(), VONSEOWP_VERSION);
+        wp_enqueue_style('vonseowp-social-previews-css', VONSEOWP_URL . 'admin/css/vonseowp-social-previews.css', array(), VONSEOWP_VERSION);
+        wp_enqueue_script('vonseowp-metabox-js', VONSEOWP_URL . 'admin/js/vonseowp-metabox.js', array('jquery'), VONSEOWP_VERSION, true);
+
+        wp_localize_script('vonseowp-metabox-js', 'vonseowp_metabox_data', array(
+            'analysis' => array(
+                'waiting_keyword' => __('Please set a focus keyword to start analysis.', 'vonseo'),
+                'analyzing'       => __('Analyzing content...', 'vonseo'),
+                'optimal'         => __('optimal', 'vonseo'),
+                'acceptable'      => __('acceptable', 'vonseo'),
+                'too_short'       => __('too short', 'vonseo'),
+                'too_long'        => __('too long', 'vonseo'),
+                'kw_found_title'  => __('Focus keyword found in SEO Title.', 'vonseo'),
+                'kw_missing_title' => __('Focus keyword missing from SEO Title.', 'vonseo'),
+                'kw_found_desc'   => __('Focus keyword found in Meta Description.', 'vonseo'),
+                'kw_missing_desc'  => __('Focus keyword missing from Meta Description.', 'vonseo'),
+                /* translators: %d: word count */
+                'content_good'    => __('Content length is good (%d words).', 'vonseo'),
+                /* translators: %d: word count */
+                'content_short'   => __('Content is a bit short (%d words). Aim for 300+.', 'vonseo'),
+                'title_optimal'   => __('SEO Title length is optimal.', 'vonseo'),
+                'title_truncated' => __('SEO Title length is acceptable but might be truncated.', 'vonseo'),
+                /* translators: %s: status text */
+                'title_bad'       => __('SEO Title is %s.', 'vonseo'),
+                'desc_optimal'    => __('Meta description length is optimal.', 'vonseo'),
+                'desc_acceptable' => __('Meta description length is acceptable.', 'vonseo'),
+                /* translators: %s: status text */
+                'desc_bad'        => __('Meta description is %s.', 'vonseo'),
+                'faq_q'           => __('Question...', 'vonseo'),
+                'faq_a'           => __('Answer...', 'vonseo'),
+                'remove'          => __('Remove', 'vonseo'),
+            ),
+            'ai' => array(
+                'thinking' => __('Thinking...', 'vonseo'),
+                'scanning' => __('Scanning...', 'vonseo'),
+                'no_url'   => __('Please enter a competitor URL.', 'vonseo'),
+                'conn_err' => __('Could not connect to the server.', 'vonseo'),
+                'advice_prefix' => __('AI Recommendation:', 'vonseo'),
+                /* translators: %d: word count difference */
+                'advice_short'  => __('Your content is shorter than your competitor\'s. Add about %d more words to stay competitive.', 'vonseo'),
+                'advice_depth'  => __('Great! You have more content depth than your competitor.', 'vonseo'),
+                'advice_reading' => __('Try to simplify your sentences; the competitor\'s content is easier to read.', 'vonseo'),
+            )
+        ));
+    }
+
+    public function add_meta_box() {
+        $screens = array('post', 'page');
+        foreach ($screens as $screen) {
+            add_meta_box(
+                'vonseowp_meta_box',
+                __('VonSEO - Content Intelligence', 'vonseo'),
+                array($this, 'render_meta_box'),
+                $screen,
+                'side',
+                'high'
+            );
+        }
+    }
+
+    public function render_meta_box(object $post): void {
+        wp_nonce_field('vonseowp_meta_box', 'vonseowp_meta_box_nonce');
+        require VONSEOWP_PATH . 'admin/partials/vonseowp-meta-box-display.php';
+    }
+
+    public function save_meta_box(int $post_id): void {
+        if (!isset($_POST['vonseowp_meta_box_nonce'])) return;
+        if (!wp_verify_nonce(sanitize_key(wp_unslash($_POST['vonseowp_meta_box_nonce'])), 'vonseowp_meta_box')) return;
+        if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+        if (!current_user_can('edit_post', $post_id)) return;
+
+        $fields = array('title', 'description', 'keywords', 'image', 'schema_type', 'rating', 'social_title', 'social_desc');
+        foreach ($fields as $field) {
+            if (isset($_POST['vonseowp_' . $field])) {
+                if ($field === 'description') {
+                    update_post_meta($post_id, '_vonseowp_' . $field, sanitize_textarea_field(wp_unslash($_POST['vonseowp_' . $field])));
+                } else {
+                    update_post_meta($post_id, '_vonseowp_' . $field, sanitize_text_field(wp_unslash($_POST['vonseowp_' . $field])));
+                }
+            }
+        }
+
+        $noindex = isset($_POST['vonseowp_noindex']) ? '1' : '0';
+        update_post_meta($post_id, '_vonseowp_noindex', $noindex);
+
+        $disable_toc = isset($_POST['vonseowp_disable_toc']) ? '1' : '0';
+        update_post_meta($post_id, '_vonseowp_disable_toc', $disable_toc);
+
+        // Save FAQ
+        if (isset($_POST['vonseowp_faq']) && is_array($_POST['vonseowp_faq'])) {
+            $vonseo_faqs_raw = wp_unslash($_POST['vonseowp_faq']); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+            $faqs = array();
+            foreach ($vonseo_faqs_raw as $faq) {
+                if (is_array($faq) && !empty($faq['q']) && !empty($faq['a'])) {
+                    $faqs[] = array(
+                        'q' => sanitize_text_field($faq['q']),
+                        'a' => sanitize_textarea_field($faq['a'])
+                    );
+                }
+            }
+            update_post_meta($post_id, '_vonseowp_faq', $faqs);
+        } else {
+            delete_post_meta($post_id, '_vonseowp_faq');
+        }
+
+        // Save Video Schema
+        if (isset($_POST['vonseowp_video']) && is_array($_POST['vonseowp_video'])) {
+            $vonseo_video_raw = wp_unslash($_POST['vonseowp_video']); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+            $video = array(
+                'url'  => esc_url_raw($vonseo_video_raw['url'] ?? ''),
+                'name' => sanitize_text_field($vonseo_video_raw['name'] ?? ''),
+                'desc' => sanitize_textarea_field($vonseo_video_raw['desc'] ?? '')
+            );
+            if (!empty($video['url'])) {
+                update_post_meta($post_id, '_vonseowp_video', $video);
+            } else {
+                delete_post_meta($post_id, '_vonseowp_video');
+            }
+        }
+    }
+}

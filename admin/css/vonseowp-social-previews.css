@@ -1,0 +1,162 @@
+/* ==========================================================================
+   SOCIAL PREVIEW TABS & CARDS
+   ========================================================================== */
+
+.von-social-preview-tabs {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 5px;
+}
+
+.von-sp-tab {
+  background: transparent;
+  border: none;
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s;
+}
+
+.von-sp-tab:hover {
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+.von-sp-tab.active {
+  background: #e0e7ff;
+  color: #4f46e5;
+}
+
+.von-sp-content {
+  display: none;
+}
+
+.von-sp-content.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Facebook Card */
+.von-fb-card {
+  background: #f0f2f5;
+  border: 1px solid #dddfe2;
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.von-fb-img {
+  height: 160px;
+  background-color: #e4e6eb;
+  background-size: cover;
+  background-position: center;
+  border-bottom: 1px solid #dddfe2;
+}
+
+.von-fb-meta {
+  padding: 10px 12px;
+  background: #f0f2f5;
+}
+
+.von-fb-domain {
+  font-size: 10px;
+  color: #65676b;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.von-fb-title {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1c1e21;
+  line-height: 1.2;
+  margin-bottom: 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.von-fb-desc {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  color: #606770;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Twitter Card (Summary Large Image) */
+.von-tw-card {
+  border: 1px solid #cfd9de;
+  border-radius: 12px;
+  overflow: hidden;
+  max-width: 100%;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+}
+
+.von-tw-img {
+  height: 160px;
+  background-color: #cfd9de;
+  background-size: cover;
+  background-position: center;
+  border-bottom: 1px solid #cfd9de;
+}
+
+.von-tw-meta {
+  padding: 10px 12px;
+  background: white;
+}
+
+.von-tw-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f1419;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.von-tw-desc {
+  font-size: 12px;
+  color: #536471;
+  margin-bottom: 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.von-tw-domain {
+  font-size: 12px;
+  color: #536471;
+}
