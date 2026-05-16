@@ -46,7 +46,7 @@ class VonSEOWP_Sitemap {
         // If no page is specified, check if we need an index
         if (empty($paged)) {
             $total_posts = $this->get_total_entries();
-            if ($total_posts > 3) {
+            if ($total_posts > 1000) {
                 $this->output_index($total_posts);
                 exit;
             }
@@ -66,7 +66,7 @@ class VonSEOWP_Sitemap {
         echo '<?xml version="1.0" encoding="UTF-8"?>';
         echo '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
         
-        $pages = ceil($total / 3);
+        $pages = ceil($total / 1000);
         $base_url = home_url('/sitemap.xml');
 
         for ($i = 1; $i <= $pages; $i++) {
@@ -105,7 +105,7 @@ class VonSEOWP_Sitemap {
             return;
         }
         $paged = max(1, (int) get_query_var('vonseowp_sitemap_page', 1));
-        $posts_per_page = 3;
+        $posts_per_page = 1000;
         $offset = ($paged - 1) * $posts_per_page;
 
         $args = array(
