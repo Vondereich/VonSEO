@@ -19,6 +19,7 @@ class VonSEOWP_Sitemap {
 
     public function add_query_vars(array $vars): array {
         $vars[] = 'vonseowp_sitemap';
+        $vars[] = 'vonseowp_sitemap_page';
         return $vars;
     }
 
@@ -68,7 +69,7 @@ class VonSEOWP_Sitemap {
             echo '</urlset>';
             return;
         }
-        $paged = max(1, (int) get_query_var('p', 1));
+        $paged = max(1, (int) get_query_var('vonseowp_sitemap_page', 1));
         $posts_per_page = 1000;
         $offset = ($paged - 1) * $posts_per_page;
 

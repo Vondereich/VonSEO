@@ -36,7 +36,7 @@ if (version_compare(PHP_VERSION, '7.4', '<')) {
     return;
 }
 
-define('VONSEOWP_VERSION', '2.3.0');
+define('VONSEOWP_VERSION', '2.3.1');
 define('VONSEOWP_PATH', plugin_dir_path(__FILE__));
 define('VONSEOWP_URL', plugin_dir_url(__FILE__));
 
