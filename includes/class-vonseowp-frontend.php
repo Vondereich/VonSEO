@@ -8,6 +8,8 @@ if (!defined('ABSPATH')) exit;
 
 
 class VonSEOWP_Frontend {
+    private static $has_run_meta = false;
+    private static $has_run_json = false;
 
     public function __construct() {
         add_filter('pre_get_document_title', array($this, 'filter_document_title'), 15);
@@ -46,6 +48,11 @@ class VonSEOWP_Frontend {
     }
 
     public function output_meta_tags() {
+        if (isset($GLOBALS['vonseowp_meta_tags_done'])) {
+            return;
+        }
+        $GLOBALS['vonseowp_meta_tags_done'] = true;
+
         global $post;
         $options = get_option('vonseowp_settings', array());
         
@@ -161,6 +168,11 @@ class VonSEOWP_Frontend {
     }
 
     public function output_json_ld() {
+        if (isset($GLOBALS['vonseowp_json_ld_done'])) {
+            return;
+        }
+        $GLOBALS['vonseowp_json_ld_done'] = true;
+
         global $post;
         $options = get_option('vonseowp_settings', array());
         $schema_type = $options['schema_org_type'] ?? 'Organization';
