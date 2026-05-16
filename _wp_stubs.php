@@ -52,6 +52,10 @@ if (!function_exists('_e')) {
     function _e(string $text, string $domain = 'default'): void { echo $text; }
 }
 
+if (!function_exists('wp_kses_post')) {
+    function wp_kses_post(string $data): string { return $data; }
+}
+
 if (!function_exists('esc_html__')) {
     function esc_html__(string $text, string $domain = 'default'): string { return $text; }
 }

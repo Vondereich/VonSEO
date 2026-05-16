@@ -4,6 +4,10 @@
  */
 if (!defined('ABSPATH')) exit;
 
+if (false) {
+    require_once dirname(__DIR__) . '/_wp_stubs.php';
+}
+
 class VonSEOWP_LLM {
 
     public function __construct() {
@@ -49,8 +53,9 @@ class VonSEOWP_LLM {
             header('Content-Type: text/plain; charset=utf-8');
             header('X-Robots-Tag: index, follow');
             header('X-Content-Type-Options: nosniff');
-            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Plain text markdown content for llms.txt.
-            echo $content;
+            
+            // Escaping with wp_kses_post for security audit compliance
+            echo wp_kses_post($content);
             exit;
         }
     }

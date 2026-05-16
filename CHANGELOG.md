@@ -4,11 +4,17 @@ All notable changes to the VonSEOWP plugin will be documented in this file.
 
 ## [2.3.1] - 2026-05-17
 ### Added
-- **Sitemap Scaling**: Implemented a hard limit of 1,000 posts per sitemap page to ensure high performance on enterprise-scale websites.
-- **Local Analyzer Roadmap**: Integrated the "VonSEO Local Analyzer" architecture plan for v2.3.4 (JS) and v2.4 (PHP) into the roadmap.
+- **Sitemap Index System**: Automated generation of `sitemap_index.xml` when post count exceeds 1,000 for improved crawling efficiency.
+- **Competitor Analysis Cache**: Implemented 12-hour transient caching for URL scans to prevent redundant scraping and improve dashboard performance.
+- **Repository Standards**: Added `.gitattributes` to standardize LF line endings across development environments.
+- **Local Analyzer Roadmap**: Integrated architecture plans for v2.3.4 (JS) and v2.4 (PHP) into the roadmap.
 
 ### Fixed
-- **404 Asset Errors**: Resolved critical browser console errors by temporarily disabling non-existent public CSS/JS enqueues.
+- **Sitemap Query Conflict**: Renamed pagination parameter to `vonseowp_sitemap_page` to prevent conflicts with WordPress core post queries.
+- **Security Hardening**: Applied `wp_kses_post` escaping to the `llms.txt` output layer.
+- **Schema Accuracy**: Replaced hardcoded `ratingCount` with dynamic meta-data retrieval.
+- **404 Asset Errors**: Resolved browser console errors by disabling non-existent public CSS/JS enqueues.
+- **IDE Support**: Expanded `_wp_stubs.php` with missing WordPress core functions and constants.
 
 ## [2.3.0] - 2026-05-16
 ### Added
