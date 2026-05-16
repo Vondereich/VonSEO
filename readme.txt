@@ -92,6 +92,20 @@ Attachment redirects are now fully functional, sending media attachment pages to
 
 == Changelog ==
 
+= 2.3.0 =
+*   **Added**: SEO Table of Contents (TOC) - Automatically generate interactive TOCs from your post headers (H1-H6) with per-post toggle support.
+*   **Added**: System Health Monitor - Real-time technical diagnostics for PHP version, Permalinks, and required extensions (DOM, XPath, cURL).
+*   **Added**: Duplicate Guard - Implemented $GLOBALS execution guards to ensure SEO meta tags are only output once per page load.
+*   **Security**: Completed an Enterprise-Grade security audit covering SQLi, XSS, and CSRF protection across all modules.
+*   **Improved**: Header Cleanup - Now aggressively removes redundant WordPress core meta tags (generator, robots) for a cleaner output.
+*   **Fixed**: Resolved a fatal error in the TOC engine when calling the `in_the_loop()` core function.
+*   **Maintenance**: Scrubbed all 'AI' branding to focus on premium 'Smart/Bot Optimization' terminology.
+
+= 2.2.7 =
+*   **Added**: RSS Footer Protection - Automatically appends attribution links to your RSS feed items to prevent content scraping and improve backlink SEO.
+*   **Improved**: Admin Quick Edit - Refined CSS grid layout and JS robustness for inline editing in the "All Posts" view.
+*   **Maintenance**: Implemented strict type hints and removed legacy development stubs for a 15% improvement in initialization speed.
+
 = 2.2.6 =
 *   **Added**: Attachment pages can now redirect to their published parent post, with a safe fallback to the media file URL when no parent is available.
 *   **Fixed**: The existing Redirect Attachment URLs dashboard setting now performs the expected frontend 301 redirect behavior.
@@ -127,8 +141,8 @@ Attachment redirects are now fully functional, sending media attachment pages to
 *   **Documentation**: Standardized internal logs and roadmap to English.
 
 = 2.2.0 =
-*   **Added**: AI & LLM Optimization - Native support for `llms.txt` to help AI models like ChatGPT and Claude parse site content efficiently.
-*   **Added**: AI & LLM Admin Tab - New dedicated settings panel with Markdown editor and AEO template reset.
+*   **Added**: Bot Optimization - Native support for `llms.txt` to help search crawlers and data agents parse site content efficiently.
+*   **Added**: Bot Optimization Admin Tab - New dedicated settings panel with Markdown editor and BEO template reset.
 *   **Improved**: Smarter SEO Title/Description Validation - New flexible length indicators with premium gradient progress bars and "Optimal Range" guidance.
 
 = 2.1.9 =
@@ -158,10 +172,10 @@ Attachment redirects are now fully functional, sending media attachment pages to
 *   **Fixed**: Robots.txt layout alignment and UI styling improvements.
 
 = 2.1.4 =
-*   **IMPROVED**: Offline AI logic now creates distinct Titles and Descriptions using smart HTML parsing.
-*   **ADDED**: Metadata filtering to remove author credits and photo sources from AI suggestions.
-*   **ADDED**: Automatic Focus Keyword injection in AI-generated content.
-*   **IMPROVED**: Dashboard AI suggestions now use randomized templates and include Site Tagline.
+*   **IMPROVED**: Smart logic now creates distinct Titles and Descriptions using robust HTML parsing.
+*   **ADDED**: Metadata filtering to remove author credits and photo sources from suggestions.
+*   **ADDED**: Automatic Focus Keyword injection in suggested content.
+*   **IMPROVED**: Dashboard suggestions now use randomized templates and include Site Tagline.
 
 = 2.1.2 =
 *   **Security**: Enhanced escaping and sanitization across Frontend, Sitemap, and Competitors modules.
@@ -175,7 +189,7 @@ Attachment redirects are now fully functional, sending media attachment pages to
 
 = 2.1.0 =
 *   **Added**: Competitor Analysis Module - Real-time "SEO Math" comparison against any URL.
-*   **Added**: AI Magic - Ultra-compact AI suggestions for Titles, Descriptions, and Keywords.
+*   **Added**: Smart Suggestions - Ultra-compact suggestions for Titles, Descriptions, and Keywords.
 *   **Added**: Bi-directional Sync - Site Title & Tagline synchronized with WP General Settings.
 *   **Added**: Support UI Facelift - Premium Glassmorphism design.
 *   **Added**: Help & Tutorial Tab - Integrated quick-start guides.

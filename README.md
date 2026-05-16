@@ -16,7 +16,7 @@ VonSEOWP removes the need for bloated, ad-heavy SEO plugins. It focuses on fast 
 ### 1. Modern Sidebar Meta Box
 - **Icon-based Tabs**: Compact editing workflow for faster content optimization.
 - **Micro Google Preview**: Real-time search result visualization while you edit.
-- **AI Magic**: Instant suggestions for titles, descriptions, and keywords.
+- **Smart Magic**: Instant suggestions for titles, descriptions, and keywords.
 - **Competitor SEO Math**: Compare your metrics against live competitor URLs.
 - **Granular TOC Control**: Toggle Table of Contents per-post.
 
