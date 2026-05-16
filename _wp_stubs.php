@@ -36,8 +36,8 @@ if (!function_exists('absint')) {
     function absint(mixed $maybeint): int { return 0; }
 }
 
-if (!function_exists('in_the_main_loop')) {
-    function in_the_main_loop(): bool { return true; }
+if (!function_exists('in_the_loop')) {
+    function in_the_loop(): bool { return true; }
 }
 
 if (!function_exists('sanitize_title')) {

@@ -7,7 +7,7 @@
 if (!defined('ABSPATH')) exit;
 
 if (false) {
-    require_once __DIR__ . '/../_wp_stubs.php';
+    require_once dirname(__DIR__) . '/_wp_stubs.php';
 }
 
 class VonSEOWP_TOC {
@@ -34,7 +34,7 @@ class VonSEOWP_TOC {
      * Automatically inject TOC into content if enabled
      */
     public function inject_toc(string $content): string {
-        if (!is_singular() || !in_the_main_loop()) {
+        if (!is_singular() || !in_the_loop()) {
             return $content;
         }
 
