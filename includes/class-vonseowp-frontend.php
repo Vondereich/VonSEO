@@ -17,8 +17,12 @@ class VonSEOWP_Frontend {
         add_action('wp_head', array($this, 'output_json_ld'), 99);
         add_filter('robots_txt', array($this, 'handle_robots_txt'), 99, 2);
         add_action('wp_enqueue_scripts', array($this, 'enqueue_assets'));
+        add_action('wp_head', array($this, 'force_remove_wp_robots'), 0);
         remove_action('wp_head', 'wp_generator');
-        remove_action('wp_head', 'wp_robots');
+    }
+
+    public function force_remove_wp_robots(): void {
+        remove_action('wp_head', 'wp_robots', 1);
     }
 
     public function enqueue_assets(): void {
