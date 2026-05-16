@@ -36,11 +36,24 @@ Based on key improvement suggestions, here are the development phases for VonSEO
 - [x] **Frontend Asset Layer**: Optimized CSS/JS footprint for professional public components.
 - [x] **Duplicate Guard**: Implemented $GLOBALS guards for clean, unique meta tag output.
 
+## v2.3.1 - Sitemap Scaling & UI Refinement (Completed)
+- [x] **Sitemap Pagination**: Implement limit of 1,000 posts per sitemap page for better performance on large sites.
+- [ ] **Branding Refinement**: Replace the current "Lightning" icon with a more premium, modern professional logo and polish the header typography.
+
+## v2.3.4 - Content Analysis (Real-time JS Analyzer)
+- [ ] **Real-time SEO Score**: Instant content analysis during authoring (Keyword density, heading structure check, image ALT scan).
+- [ ] **Lightweight JS Engine**: Modular analyzer logic optimized to remain under 20KB to ensure zero editor lag.
+- [ ] **Live Suggestions**: Smart prompts for meta-description length and title optimization.
+
+## v2.4 - Expert Audit (PHP Local Analyzer)
+- [ ] **Full Local SEO Audit Engine**: Comprehensive site-wide scanner and technical checker processed entirely on the user's server.
+- [ ] **Zero API Dependency**: No data is sent to external servers for auditing, ensuring maximum privacy and 100% uptime.
+- [ ] **Performance Benchmarking**: Localized speed and resource checks for core web vitals.
+
 ## Future Roadmap
 - [ ] **Smart Alt Text**: Automated generation of alt text for images to save time.
-- [ ] **Content Analysis Score**: Real-time SEO score (keyword density, readability, heading structure).
 - [ ] **Internal Link Suggestions**: Auto-suggest internal links based on keywords within the post.
-- **Google Search Console Integration**: Display ranking keywords, CTR, and impressions directly in the dashboard.
+- [ ] **Google Search Console Integration**: Display ranking keywords, CTR, and impressions directly in the dashboard via secure API.
 
 ## Long Term Goals
 - **SaaS Connectivity**: Sync settings between multiple sites (VonSEO Cloud).

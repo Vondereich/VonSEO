@@ -2,6 +2,14 @@
 
 All notable changes to the VonSEOWP plugin will be documented in this file.
 
+## [2.3.1] - 2026-05-17
+### Added
+- **Sitemap Scaling**: Implemented a hard limit of 1,000 posts per sitemap page to ensure high performance on enterprise-scale websites.
+- **Local Analyzer Roadmap**: Integrated the "VonSEO Local Analyzer" architecture plan for v2.3.4 (JS) and v2.4 (PHP) into the roadmap.
+
+### Fixed
+- **404 Asset Errors**: Resolved critical browser console errors by temporarily disabling non-existent public CSS/JS enqueues.
+
 ## [2.3.0] - 2026-05-16
 ### Added
 - **SEO Table of Contents (TOC)**: Automatic TOC generator with anchor injection, shortcode support, and per-post controls.

@@ -68,12 +68,18 @@ class VonSEOWP_Sitemap {
             echo '</urlset>';
             return;
         }
+        $paged = max(1, (int) get_query_var('p', 1));
+        $posts_per_page = 1000;
+        $offset = ($paged - 1) * $posts_per_page;
+
         $args = array(
             'post_type' => $post_types,
             'post_status' => 'publish',
-            'posts_per_page' => -1,
+            'posts_per_page' => $posts_per_page,
+            'offset' => $offset,
             'orderby' => 'modified',
-            'order' => 'DESC'
+            'order' => 'DESC',
+            'no_found_rows' => true // Performance optimization
         );
 
         $query = new WP_Query($args);

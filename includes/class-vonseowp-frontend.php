@@ -26,8 +26,9 @@ class VonSEOWP_Frontend {
     }
 
     public function enqueue_assets(): void {
-        wp_enqueue_style('vonseo-public-css', VONSEOWP_URL . 'public/css/vonseowp-public.css', array(), VONSEOWP_VERSION);
-        wp_enqueue_script('vonseo-public-js', VONSEOWP_URL . 'public/js/vonseowp-public.js', array(), VONSEOWP_VERSION, true);
+        // Temporarily disabled to prevent 404 console errors until public assets are ready
+        // wp_enqueue_style('vonseo-public-css', VONSEOWP_URL . 'public/css/vonseowp-public.css', array(), VONSEOWP_VERSION);
+        // wp_enqueue_script('vonseo-public-js', VONSEOWP_URL . 'public/js/vonseowp-public.js', array(), VONSEOWP_VERSION, true);
     }
 
     public function filter_document_title(string $title): string {
