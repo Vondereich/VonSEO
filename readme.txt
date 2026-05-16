@@ -8,47 +8,56 @@ Stable tag: 2.3.1
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-A premium, lightweight SEO toolkit with Table of Contents, System Health, XML Sitemaps, and Content Analysis.
+Surgical SEO. Zero Bloat. Born from the high-performance VonCMS ecosystem.
 
 == Description ==
 
-VonSEO is a **premium-grade, ultra-lightweight SEO toolkit** ported from the **VonCMS** ecosystem. Designed for high-performance modern WordPress websites, it focuses on what actually matters: **High-Performance Metadata**, **Security**, and a **Clean User Experience**.
+VonSEO isn't just another SEO plugin; it’s a **high-performance publishing engine**. Originally forged within the enterprise-grade **VonCMS** ecosystem, it has been meticulously adapted for WordPress publishers who refuse to compromise on speed, security, and database hygiene.
 
-It eliminates the "operating system inside WordPress" bloat found in legacy SEO plugins, delivering a **state-of-the-art dashboard**, **automatic Table of Contents**, **XML sitemaps**, **IndexNow integration**, and **System Health** diagnostics in a lean footprint.
+Stop turning your WordPress dashboard into a heavy SaaS marketing platform. It's time for **Performance-First SEO**.
 
 ### Why Choose VonSEO?
 
-While other SEO plugins constantly force you to upgrade to their "PRO" version to unlock basic features (like Redirection or TOC), VonSEO gives you everything out of the box.
+Most SEO plugins suffer from "Feature Obesity." They trade your server's performance for ad-heavy dashboards and unnecessary telemetry. VonSEO rejects the bloat.
 
-*   **No Paywalls**: What you see is what you get. No hidden "Pro" tabs.
-*   **Set & Forget**: Configure global settings once, and let the plugin handle the automations.
-*   **Database Cleanliness**: We don't create custom tables. We use native WordPress `post_meta` and `wp_options`.
-*   **Developer Friendly**: Hooks and filters available for extending functionality.
+*   **Zero-Waste Architecture**: No custom database tables. We use native WordPress `post_meta` and `wp_options` for maximum speed and compatibility.
+*   **Enterprise Heritage**: Built with the same performance DNA as VonCMS.
+*   **Privacy as a Feature**: No tracking. No telemetry. No "phoning home." Your data stays on your server.
+*   **No Paywalls**: What you see is what you get. No hidden “Pro” tabs or forced upgrades.
 
-### Comprehensive Feature List
+### The Professional Toolkit
 
-#### 1. Automated Smart Schema (JSON-LD)
-We automatically generate Google-compliant Structured Data for your site:
-*   **Article & WebPage**: Core schema for all content.
-*   **FAQ & Video**: Rich snippets for enhanced search visibility.
-*   **Review Ratings**: Add star ratings to your pages.
-*   **Breadcrumbs**: Helps Google understand your site structure.
+#### 1. Modern SEO Workspace
+A clean, focused editorial workflow designed for speed and usability.
+*   **Compact Sidebar Interface**: Optimize content without leaving the editor.
+*   **Real-Time Google Preview**: See exactly how your site looks in the wild.
+*   **Smart Metadata Suggestions**: AI-driven generation without the server load.
+*   **Competitor SEO Math**: Live metric comparison against any URL.
 
-#### 2. Advanced Tools
-*   **SEO Table of Contents (TOC)**: Automatic and interactive TOC with smooth transitions.
-*   **XML Sitemaps**: Auto-generated `sitemap.xml` for Google/Bing.
-*   **Instant Indexing (IndexNow)**: Notify search engines immediately about new content.
+#### 2. Advanced Technical Engine
+*   **Dynamic Sitemap Indexing**: Automated scaling with `sitemap_index.xml` and 1,000-post pagination.
+*   **Instant Indexing (IndexNow)**: Instantly notify Bing and Yandex when content is updated.
+*   **Surgical JSON-LD Schema**: Pure, optimized structured data (Article, FAQ, Video, Review, Breadcrumbs).
+*   **SEO Table of Contents (TOC)**: Lightweight, anchor-based TOC with zero external dependencies.
+
+#### 3. Safety & System Health
+*   **System Health Monitor**: Real-time technical diagnostics for your PHP environment and permalinks.
+*   **Redirect & Robots Manager**: Lightweight control over site navigation and crawling instructions.
+*   **Production-Ready Security**: Strict Nonce verification, Capability checks, and Sanitization at every layer.
 
 == Installation ==
 
 1. Upload the `vonseo` folder to the `/wp-content/plugins/` directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
-3. Access the VonSEO dashboard from the WordPress admin menu.
+3. Access the VonSEO dashboard and save your settings.
 
 == Frequently Asked Questions ==
 
 = Does this plugin slow down my site? =
-No. VonSEO is designed to be lightweight and fast, with zero external dependencies and optimized database queries.
+No. VonSEO is engineered to be the lightest SEO engine for WordPress, using zero external dependencies and native storage.
+
+= Is this compatible with PHP 8.2? =
+Yes. VonSEO requires PHP 7.4+ and is fully optimized for PHP 8.2/8.3.
 
 == Changelog ==
 
@@ -66,13 +75,6 @@ No. VonSEO is designed to be lightweight and fast, with zero external dependenci
 *   New: System Health Monitor for real-time SEO diagnostics.
 *   New: Admin Quick Edit columns for SEO Title, Description, and Score.
 *   Improved: Hardened security posture across all core modules.
-
-= 2.2.7 =
-*   Maintenance: Internal release and stability patches.
-
-= 2.1.0 =
-*   Added: Competitor Analysis Module - Real-time "SEO Math" comparison.
-*   Added: Smart Suggestions - Compact Title and Description suggestions.
 
 = 2.0.0 =
 *   NEW: Full Professional Suite release with Sitemaps and Redirection.
