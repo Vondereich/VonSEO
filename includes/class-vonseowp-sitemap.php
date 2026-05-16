@@ -15,6 +15,7 @@ class VonSEOWP_Sitemap {
 
     public function add_rewrite_rules(): void {
         add_rewrite_rule('sitemap\.xml$', 'index.php?vonseowp_sitemap=1', 'top');
+        add_rewrite_rule('sitemap_index\.xml$', 'index.php?vonseowp_sitemap=1', 'top');
     }
 
     public function add_query_vars(array $vars): array {
@@ -40,8 +41,42 @@ class VonSEOWP_Sitemap {
             exit;
         }
 
+        $paged = get_query_var('vonseowp_sitemap_page');
+        
+        // If no page is specified, check if we need an index
+        if (empty($paged)) {
+            $total_posts = $this->get_total_entries();
+            if ($total_posts > 1000) {
+                $this->output_index($total_posts);
+                exit;
+            }
+        }
+
         $this->output_xml($options);
         exit;
+    }
+
+    private function get_total_entries(): int {
+        $count = wp_count_posts('post')->publish + wp_count_posts('page')->publish;
+        return (int) $count;
+    }
+
+    private function output_index(int $total): void {
+        header('Content-Type: application/xml; charset=utf-8');
+        echo '<?xml version="1.0" encoding="UTF-8"?>';
+        echo '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+        
+        $pages = ceil($total / 1000);
+        $base_url = home_url('/sitemap.xml');
+
+        for ($i = 1; $i <= $pages; $i++) {
+            echo '<sitemap>';
+            echo '<loc>' . esc_url(add_query_arg('vonseowp_sitemap_page', $i, $base_url)) . '</loc>';
+            echo '<lastmod>' . date('c') . '</lastmod>';
+            echo '</sitemap>';
+        }
+
+        echo '</sitemapindex>';
     }
 
     private function output_xml(array $options = array()): void {

@@ -96,11 +96,34 @@ if (!function_exists('add_shortcode')) {
     function add_shortcode(string $tag, $callback): bool { return true; }
 }
 
+if (!function_exists('get_transient')) {
+    function get_transient(string $transient): mixed { return false; }
+}
+
+if (!function_exists('set_transient')) {
+    function set_transient(string $transient, mixed $value, int $expiration = 0): bool { return true; }
+}
+
+if (!function_exists('wp_count_posts')) {
+    function wp_count_posts(string $type = 'post'): object { return (object) array('publish' => 0); }
+}
+
+if (!function_exists('add_query_arg')) {
+    function add_query_arg(...$args): string { return ''; }
+}
+
 if (!function_exists('shortcode_atts')) {
     function shortcode_atts(mixed $pairs, mixed $atts, string $shortcode = ''): array {
         return array_merge((array) $pairs, is_array($atts) ? $atts : array());
     }
 }
+
+if (!defined('MINUTE_IN_SECONDS')) define('MINUTE_IN_SECONDS', 60);
+if (!defined('HOUR_IN_SECONDS'))   define('HOUR_IN_SECONDS', 3600);
+if (!defined('DAY_IN_SECONDS'))    define('DAY_IN_SECONDS', 86400);
+if (!defined('WEEK_IN_SECONDS'))   define('WEEK_IN_SECONDS', 604800);
+if (!defined('MONTH_IN_SECONDS'))  define('MONTH_IN_SECONDS', 2592000);
+if (!defined('YEAR_IN_SECONDS'))   define('YEAR_IN_SECONDS', 31536000);
 
 if (!function_exists('register_activation_hook')) {
     function register_activation_hook(string $file, $callback): bool { return true; }

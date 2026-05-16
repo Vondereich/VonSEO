@@ -291,12 +291,17 @@ class VonSEOWP_Frontend {
             // Add Rating for Reviews/Products
             $rating = get_post_meta($post->ID, '_vonseowp_rating', true);
             if (is_numeric($rating) && $rating > 0) {
+                $rating_count = get_post_meta($post->ID, '_vonseowp_rating_count', true);
+                if (!$rating_count || !is_numeric($rating_count)) {
+                    $rating_count = 1; // Fallback
+                }
+                
                 $article['aggregateRating'] = array(
                     '@type' => 'AggregateRating',
                     'ratingValue' => $rating,
                     'bestRating' => '5',
                     'worstRating' => '1',
-                    'ratingCount' => '1' // Default to 1 for manual entry
+                    'ratingCount' => (int) $rating_count
                 );
             }
 

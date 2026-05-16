@@ -31,10 +31,18 @@ class VonSEOWP_Competitors {
             wp_send_json_error(array('message' => __('Invalid URL', 'vonseo')));
         }
 
-        $results = $this->analyze_url($url);
+        $cache_key = 'vonseowp_comp_' . md5($url);
+        $results = get_transient($cache_key);
 
-        if (is_wp_error($results)) {
-            wp_send_json_error(array('message' => $results->get_error_message()));
+        if (false === $results) {
+            $results = $this->analyze_url($url);
+
+            if (is_wp_error($results)) {
+                wp_send_json_error(array('message' => $results->get_error_message()));
+            }
+
+            // Cache for 12 hours
+            set_transient($cache_key, $results, 12 * HOUR_IN_SECONDS);
         }
 
         wp_send_json_success($results);
