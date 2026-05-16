@@ -11,11 +11,11 @@ if (false) {
         <div class="von-header-left">
             <div class="von-logo">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                 </svg>
                 <span>VonSEO</span>
             </div>
-            <span class="von-badge-premium"><?php esc_html_e('Premium', 'vonseo'); ?></span>
+            <span class="von-badge-professional"><?php esc_html_e('Professional', 'vonseo'); ?></span>
         </div>
         <div class="von-header-right">
             <a href="https://github.com/Vondereich" target="_blank" class="von-link-help"><?php esc_html_e('Help & Support', 'vonseo'); ?></a>
@@ -56,7 +56,7 @@ if (false) {
                     <span class="dashicons dashicons-index-card"></span> <?php esc_html_e('Robots.txt', 'vonseo'); ?>
                 </a>
                 <a href="#tab-llm" class="von-tab-link" onclick="openTab(event, 'tab-llm')">
-                    <span class="dashicons dashicons-superhero"></span> <?php esc_html_e('AI & LLM', 'vonseo'); ?>
+                    <span class="dashicons dashicons-superhero"></span> <?php esc_html_e('Bot Optimization', 'vonseo'); ?>
                 </a>
             </nav>
 
