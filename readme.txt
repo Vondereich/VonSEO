@@ -18,7 +18,7 @@ Stop turning your WordPress dashboard into a heavy SaaS marketing platform. It's
 
 ### Why Choose VonSEO?
 
-Most SEO plugins suffer from "Feature Obesity." They trade your server's performance for ad-heavy dashboards and unnecessary telemetry. VonSEO rejects the bloat.
+Most SEO plugins become increasingly heavy over time, trading performance for oversized dashboards, telemetry, and marketing layers. VonSEO rejects the bloat.
 
 *   **Zero-Waste Architecture**: No custom database tables. We use native WordPress `post_meta` and `wp_options` for maximum speed and compatibility.
 *   **Enterprise Heritage**: Built with the same performance DNA as VonCMS.
@@ -31,7 +31,7 @@ Most SEO plugins suffer from "Feature Obesity." They trade your server's perform
 A clean, focused editorial workflow designed for speed and usability.
 *   **Compact Sidebar Interface**: Optimize content without leaving the editor.
 *   **Real-Time Google Preview**: See exactly how your site looks in the wild.
-*   **Smart Metadata Suggestions**: AI-driven generation without the server load.
+*   **Smart Metadata Assistance**: Faster editorial workflows without the server load.
 *   **Competitor SEO Math**: Live metric comparison against any URL.
 
 #### 2. Advanced Technical Engine
@@ -54,7 +54,7 @@ A clean, focused editorial workflow designed for speed and usability.
 == Frequently Asked Questions ==
 
 = Does this plugin slow down my site? =
-No. VonSEO is engineered to be the lightest SEO engine for WordPress, using zero external dependencies and native storage.
+No. VonSEO is engineered with a lightweight-first architecture using native WordPress storage and minimal frontend overhead.
 
 = Is this compatible with PHP 8.2? =
 Yes. VonSEO requires PHP 7.4+ and is fully optimized for PHP 8.2/8.3.

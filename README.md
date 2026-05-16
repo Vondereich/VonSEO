@@ -10,12 +10,12 @@ Stop turning your WordPress dashboard into a heavy SaaS marketing platform. It's
 
 ## ⚡ Why VonSEOWP?
 
-Most SEO plugins suffer from "Feature Obesity." They trade your server's performance for ad-heavy dashboards and unnecessary telemetry. VonSEOWP rejects the bloat.
+Most SEO plugins become increasingly heavy over time, trading performance for oversized dashboards, telemetry, and marketing layers. VonSEOWP rejects the bloat.
 
 - **Zero-Waste Architecture**: No custom database tables. We use native `post_meta` and `wp_options` for maximum speed and compatibility.
 - **Enterprise Heritage**: Built with the same performance DNA as VonCMS.
 - **Privacy as a Feature**: No tracking. No telemetry. No "phoning home." Your data stays on your server.
-- **Modern Standards Only**: We don't support legacy junk. Minimum **WordPress 6.0** and **PHP 8.0+** required.
+- **Modern Standards Only**: We don't support legacy junk. Minimum **WordPress 6.0** and **PHP 7.4+** required.
 
 ---
 
@@ -25,7 +25,7 @@ Most SEO plugins suffer from "Feature Obesity." They trade your server's perform
 A clean, focused editorial workflow that stays out of your way until you need it.
 - **Compact Sidebar Interface**: Optimize content without leaving the editor.
 - **Real-Time Google Preview**: See exactly how your site looks in the wild.
-- **Smart Suggestions**: AI-driven metadata generation without the server load.
+- **Smart Metadata Assistance**: Faster editorial workflows without the server load.
 - **Competitor SEO Math**: Live metric comparison against any URL (with 12-hour transient caching).
 
 ### 2. Advanced Technical Engine
@@ -43,7 +43,7 @@ A clean, focused editorial workflow that stays out of your way until you need it
 
 ## 🏁 Performance Philosophy
 
-VonSEOWP is engineered for **Sovereign Publishers**.
+VonSEOWP is engineered with a lightweight-first architecture using native WordPress storage and minimal frontend overhead.
 
 - **Lightweight by Default**: Minimal frontend requests.
 - **Native Storage**: Maximum compatibility with migrations and backups.
