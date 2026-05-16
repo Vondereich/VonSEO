@@ -37,7 +37,7 @@ Based on key improvement suggestions, here are the development phases for VonSEO
 - [x] **Duplicate Guard**: Implemented $GLOBALS guards for clean, unique meta tag output.
 
 ## Future Roadmap
-- [ ] **Automated Alt Text AI**: Use AI to auto-generate alt text for images to save time.
+- [ ] **Smart Alt Text**: Automated generation of alt text for images to save time.
 - [ ] **Content Analysis Score**: Real-time SEO score (keyword density, readability, heading structure).
 - [ ] **Internal Link Suggestions**: Auto-suggest internal links based on keywords within the post.
 - **Google Search Console Integration**: Display ranking keywords, CTR, and impressions directly in the dashboard.
@@ -45,4 +45,4 @@ Based on key improvement suggestions, here are the development phases for VonSEO
 ## Long Term Goals
 - **SaaS Connectivity**: Sync settings between multiple sites (VonSEO Cloud).
 - **Competitor Watch**: Daily tracking of competitor rankings.
-- **Bulk AI Suite**: Batch processing for meta tags and content rewriting.
+- **Bulk Productivity Suite**: Batch processing for meta tags and content rewriting.

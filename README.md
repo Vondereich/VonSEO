@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # VonSEOWP
 
 **The official SEO engine of the VonCMS ecosystem.**
@@ -33,13 +34,26 @@ VonSEOWP removes the need for bloated, ad-heavy SEO plugins. It focuses on fast 
 - **Frontend Asset Layer**: Minimal CSS/JS footprint for professional components.
 
 ## New in 2.3.0
-- **Enterprise-Grade Security Audit**: Complete hardening against SQLi, XSS, and CSRF.
-- **Zero Bloat Policy**: New `uninstall.php` for total database cleanup.
-- **Enhanced TOC Module**: Improved anchor injection and mobile-first CSS.
-- **Health Grid**: New diagnostic dashboard in the admin settings.
 
-## Developer Context
-Built with WordPress Coding Standards (WPCS) and optimized for collaborative development via GitHub.
+- **SEO Table of Contents**: Automated and interactive TOC for better UX and SEO.
+- **System Health Monitor**: Real-time compatibility checks in the dashboard.
+- **Advanced Developer Support**: Full `docs/DEV_GUIDE.md` and hardened IDE stubs.
+- **Security Audit**: Verified all core modules for production safety.
+
+## Installation
+
+1. Go to **Plugins > Add New** in your WordPress dashboard.
+2. Search for **"VonSEO"**.
+3. Click **Install Now** and then **Activate**.
+4. Open **VonSEO** from the admin menu and save your preferred settings.
+
+## Updates
+
+Updates are delivered automatically via the **WordPress Plugin Directory**. Visit **Dashboard > Updates** to install the latest release.
 
 ## License
 Licensed under the GPLv3 or later.
+=======
+# VonSEO
+A lightweight, premium SEO toolkit. Features a modern dashboard, automated JSON-LD Schema, Open Graph, Twitter Cards, and per-post SEO controls without the bloat.
+>>>>>>> c4187713e31e9f5d8eb5e54a08fa224f5ca61df3

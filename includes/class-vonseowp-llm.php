@@ -70,7 +70,7 @@ class VonSEOWP_LLM {
         $template .= "- [" . __('Home Page', 'vonseo') . "]({$home_url}): " . __('Main entry point for the website.', 'vonseo') . "\n";
         $template .= "- [" . __('XML Sitemap', 'vonseo') . "]({$sitemap}): " . __('Detailed index of all public pages for crawling.', 'vonseo') . "\n\n";
         $template .= "## " . __('About', 'vonseo') . "\n\n";
-        $template .= __('This file provides a curated summary of site content for Large Language Models (LLMs) and AI crawlers.', 'vonseo');
+        $template .= __('This file provides a curated summary of site content for search crawlers and specialized data agents.', 'vonseo');
 
         return apply_filters('vonseowp_llms_txt_default_template', $template);
     }
