@@ -10,11 +10,7 @@
   The GNU General Public License is a free, copyleft license for
 software and other kinds of works.
 
-<<<<<<< HEAD
   The licenses for most software and other kinds of works are designed
-=======
-  The licenses for most software and other practical works are designed
->>>>>>> c4187713e31e9f5d8eb5e54a08fa224f5ca61df3
 to take away your freedom to share and change the works.  By contrast,
 the GNU General Public License is intended to guarantee your freedom to
 share and change all versions of a program--to make sure it remains free
@@ -41,9 +37,6 @@ freedoms that you received.  You must make sure that they, too, receive
 or can get the source code.  And you must show them these terms so they
 know their rights.
 
-<<<<<<< HEAD
-[... Full GPLv3 Text Omitted for Brevity in this UI, but will be written in full to the file ...]
-=======
   Developers that use the GNU GPL protect your rights with two steps:
 (1) assert copyright on the software, and (2) offer you this License
 giving you legal permission to copy, distribute and/or modify it.
@@ -679,4 +672,3 @@ may consider it more useful to permit linking proprietary applications with
 the library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.  But first, please read
 <https://www.gnu.org/licenses/why-not-lgpl.html>.
->>>>>>> c4187713e31e9f5d8eb5e54a08fa224f5ca61df3

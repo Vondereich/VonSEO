@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # VonSEOWP
 
 **The official SEO engine of the VonCMS ecosystem.**
@@ -53,7 +52,3 @@ Updates are delivered automatically via the **WordPress Plugin Directory**. Visi
 
 ## License
 Licensed under the GPLv3 or later.
-=======
-# VonSEO
-A lightweight, premium SEO toolkit. Features a modern dashboard, automated JSON-LD Schema, Open Graph, Twitter Cards, and per-post SEO controls without the bloat.
->>>>>>> c4187713e31e9f5d8eb5e54a08fa224f5ca61df3
