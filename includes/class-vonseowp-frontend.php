@@ -31,6 +31,30 @@ class VonSEOWP_Frontend {
         // wp_enqueue_script('vonseo-public-js', VONSEOWP_URL . 'public/js/vonseowp-public.js', array(), VONSEOWP_VERSION, true);
     }
 
+    private function get_canonical_url(): string {
+        global $post;
+
+        if (is_singular() && $post) {
+            return (string) get_permalink($post->ID);
+        }
+
+        if (is_front_page()) {
+            return home_url('/');
+        }
+
+        if (is_home()) {
+            $posts_page_id = (int) get_option('page_for_posts');
+            if ($posts_page_id > 0) {
+                return (string) get_permalink($posts_page_id);
+            }
+
+            return home_url('/');
+        }
+
+        $paged = max(1, (int) get_query_var('paged'));
+        return (string) get_pagenum_link($paged);
+    }
+
     public function filter_document_title(string $title): string {
         global $post;
         $options = get_option('vonseowp_settings', array());
@@ -64,10 +88,11 @@ class VonSEOWP_Frontend {
         
         // Defaults
         // Title handled by filter_document_title
-        $desc = $options['home_desc'] ?? get_bloginfo('description');
+        $home_desc = isset($options['home_desc']) ? trim((string) $options['home_desc']) : '';
+        $desc = $home_desc !== '' ? $home_desc : get_bloginfo('description');
         $keywords = $options['keywords'] ?? '';
         $image = $options['default_image'] ?? '';
-        $url = is_singular() ? get_permalink() : (isset($_SERVER['REQUEST_URI']) ? home_url(esc_url_raw(wp_unslash($_SERVER['REQUEST_URI']))) : home_url());
+        $url = $this->get_canonical_url();
         $type = 'website';
         $noindex = false;
 
@@ -113,20 +138,21 @@ class VonSEOWP_Frontend {
         }
 
         // Sanitize
-        // Sanitize
         $title = wp_get_document_title(); // Get the filtered title for OG tags
-        $desc = esc_attr(wp_strip_all_tags($desc));
-        
-        $request_uri = isset($_SERVER['REQUEST_URI']) ? sanitize_text_field(wp_unslash($_SERVER['REQUEST_URI'])) : '';
+        $desc = trim(wp_strip_all_tags($desc));
         
         $parsed_path = wp_parse_url($url, PHP_URL_PATH);
+        $home_path = wp_parse_url(home_url('/'), PHP_URL_PATH);
+        if ($parsed_path && $home_path && '/' !== $home_path && strpos($parsed_path, $home_path) === 0) {
+            $parsed_path = substr($parsed_path, strlen($home_path));
+        }
         $canonical_path = $parsed_path ? ltrim($parsed_path, '/') : '';
         $canonical = !empty($options['canonical_host']) ? trailingslashit($options['canonical_host']) . $canonical_path : $url;
 
         echo "\n<!-- VonSEOWP v" . esc_html(VONSEOWP_VERSION) . " - Premium SEO -->\n";
 
         // Basic Meta
-        echo '<meta name="description" content="' . esc_attr($desc) . '" />' . "\n";
+        if ($desc !== '') echo '<meta name="description" content="' . esc_attr($desc) . '" />' . "\n";
         if ($keywords) echo '<meta name="keywords" content="' . esc_attr($keywords) . '" />' . "\n";
         echo '<link rel="canonical" href="' . esc_url($canonical) . '" />' . "\n";
         echo '<meta name="generator" content="VonSEOWP ' . esc_attr(VONSEOWP_VERSION) . '" />' . "\n";
@@ -146,7 +172,8 @@ class VonSEOWP_Frontend {
             echo '<meta property="og:locale" content="' . esc_attr(get_locale()) . '" />' . "\n";
             echo '<meta property="og:type" content="' . esc_attr($type) . '" />' . "\n";
             echo '<meta property="og:title" content="' . esc_attr($social_title ?: $title) . '" />' . "\n";
-            echo '<meta property="og:description" content="' . esc_attr($social_desc ?: $desc) . '" />' . "\n";
+            $og_desc = trim(wp_strip_all_tags($social_desc ?: $desc));
+            if ($og_desc !== '') echo '<meta property="og:description" content="' . esc_attr($og_desc) . '" />' . "\n";
             echo '<meta property="og:url" content="' . esc_url($canonical) . '" />' . "\n";
             echo '<meta property="og:site_name" content="' . esc_attr(get_bloginfo('name')) . '" />' . "\n";
             if ($image) echo '<meta property="og:image" content="' . esc_url($image) . '" />' . "\n";
@@ -165,7 +192,7 @@ class VonSEOWP_Frontend {
             // Twitter Cards
             echo '<meta name="twitter:card" content="' . ($image ? 'summary_large_image' : 'summary') . '" />' . "\n";
             echo '<meta name="twitter:title" content="' . esc_attr($social_title ?: $title) . '" />' . "\n";
-            echo '<meta name="twitter:description" content="' . esc_attr($social_desc ?: $desc) . '" />' . "\n";
+            if ($og_desc !== '') echo '<meta name="twitter:description" content="' . esc_attr($og_desc) . '" />' . "\n";
             if ($image) echo '<meta name="twitter:image" content="' . esc_url($image) . '" />' . "\n";
             if (!empty($options['twitter_username'])) {
                 $tw = ltrim($options['twitter_username'], '@');
@@ -174,7 +201,8 @@ class VonSEOWP_Frontend {
             }
         }
         // LinkedIn (Uses OG, but specific tags help)
-        echo '<meta name="author" content="' . esc_attr(get_bloginfo('name')) . '" />' . "\n";
+        $author = is_singular() && $post ? get_the_author_meta('display_name', (int) $post->post_author) : get_bloginfo('name');
+        if ($author) echo '<meta name="author" content="' . esc_attr($author) . '" />' . "\n";
 
         echo "<!-- /VonSEOWP -->\n\n";
     }

@@ -67,6 +67,8 @@ Yes. VonSEO requires PHP 7.4+ and is fully optimized for PHP 8.2/8.3.
 *   Fixed: Robots meta tag now respects site visibility preferences, search results, and 404 pages.
 *   Fixed: Added rating_count storage and input field support for dynamic schema ratings.
 *   Fixed: Settings pages now return to the active tab after saving instead of falling back to General.
+*   Fixed: Subdirectory homepage canonicals no longer duplicate the WordPress base path.
+*   Fixed: Empty homepage descriptions now fall back cleanly instead of rendering blank social meta tags.
 *   Improved: Refined the admin header with a cleaner product description and aligned logo/title block.
 *   Improved: Relocated security guards to the absolute top of template partials.
 
