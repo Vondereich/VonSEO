@@ -23,8 +23,12 @@ class VonSEOWP_Admin {
 
     /**
      * Sync Plugin Settings to WP core (Title & Tagline)
+     *
+     * @param mixed  $old_value Old value.
+     * @param mixed  $new_value New value.
+     * @param string $option    Option name.
      */
-    public function sync_options_to_wp(mixed $old_value, mixed $new_value, string $option): void {
+    public function sync_options_to_wp($old_value, $new_value, string $option): void {
         if (!is_array($new_value)) return;
         
         // Sync Title
@@ -46,8 +50,11 @@ class VonSEOWP_Admin {
 
     /**
      * Sync WP Site Title (blogname) to Plugin Homepage Title
+     *
+     * @param mixed $old_value Old value.
+     * @param mixed $new_value New value.
      */
-    public function sync_title_from_wp(mixed $old_value, mixed $new_value): void {
+    public function sync_title_from_wp($old_value, $new_value): void {
         $options = get_option('vonseowp_settings', array());
         if (!is_array($options)) {
             $options = array();
@@ -64,8 +71,11 @@ class VonSEOWP_Admin {
 
     /**
      * Sync WP Tagline (blogdescription) to Plugin Homepage Description
+     *
+     * @param mixed $old_value Old value.
+     * @param mixed $new_value New value.
      */
-    public function sync_tagline_from_wp(mixed $old_value, mixed $new_value): void {
+    public function sync_tagline_from_wp($old_value, $new_value): void {
         $options = get_option('vonseowp_settings', array());
         if (!is_array($options)) {
             $options = array();
@@ -121,7 +131,12 @@ class VonSEOWP_Admin {
         ));
     }
 
-    public function sanitize_settings(mixed $input): array {
+    /**
+     * Sanitize plugin settings.
+     *
+     * @param mixed $input Raw settings input from WordPress.
+     */
+    public function sanitize_settings($input): array {
         $sanitized = array();
         
         if (!is_array($input)) {

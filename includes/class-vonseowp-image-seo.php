@@ -11,7 +11,7 @@ class VonSEOWP_Image_SEO {
         // add_filter('the_content', array($this, 'auto_content_images')); // Optional: Content filtering is heavy
     }
 
-    public function auto_image_attributes(array $attr, object $attachment, string|array $size): array {
+    public function auto_image_attributes(array $attr, object $attachment, $size): array {
         $options = get_option('vonseowp_settings', array());
 
         // ALT Tag

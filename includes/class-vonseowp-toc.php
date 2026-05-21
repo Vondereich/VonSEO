@@ -20,7 +20,7 @@ class VonSEOWP_TOC {
     /**
      * Shortcode [vonseo_toc]
      */
-    public function render_shortcode(mixed $atts = array()): string {
+    public function render_shortcode($atts = array()): string {
         $post = get_post();
         if (!$post) return '';
 

@@ -1,10 +1,10 @@
-<div class="von-dashboard-wrapper">
-    <?php 
+<?php
 if (!defined('ABSPATH')) exit; 
 if (false) {
     require_once __DIR__ . '/../../_wp_stubs.php';
 }
 ?>
+<div class="von-dashboard-wrapper">
     
     <!-- Title Header -->
     <div class="von-header">

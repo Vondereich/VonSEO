@@ -2,9 +2,9 @@
 /**
  * Plugin Name:       VonSEO
  * Description:       A lightweight, premium SEO toolkit. Features a modern dashboard, automated JSON-LD Schema, Open Graph, Twitter Cards, and per-post SEO controls without the bloat.
- * Version:           2.3.1
+ * Version:           2.3.2
  * Requires at least: 6.0
- * Tested up to:      6.9
+ * Tested up to:      7.0
  * Requires PHP:      7.4
  * Author:            Vondereich
  * Author URI:        https://www.facebook.com/kurama87
@@ -36,7 +36,7 @@ if (version_compare(PHP_VERSION, '7.4', '<')) {
     return;
 }
 
-define('VONSEOWP_VERSION', '2.3.1');
+define('VONSEOWP_VERSION', '2.3.2');
 define('VONSEOWP_PATH', plugin_dir_path(__FILE__));
 define('VONSEOWP_URL', plugin_dir_url(__FILE__));
 
@@ -56,6 +56,7 @@ class VonSEOWP {
 
     private function __construct() {
         add_action('plugins_loaded', array($this, 'init'));
+        add_action('init', array($this, 'maybe_flush_rewrites'), 999);
         register_activation_hook(__FILE__, array($this, 'activation'));
     }
 
@@ -88,6 +89,9 @@ class VonSEOWP {
              new VonSEOWP_Competitors(); 
         }
 
+    }
+
+    public function maybe_flush_rewrites(): void {
         // Flush on update/init if needed.
         $current_version = get_option('vonseowp_version');
         if (VONSEOWP_VERSION !== $current_version) {
@@ -101,7 +105,7 @@ class VonSEOWP {
         }
     }
 
-    public static function get_option(string $key, mixed $default = ''): mixed {
+    public static function get_option(string $key, $default = '') {
         $options = get_option('vonseowp_settings', array());
         if (!is_array($options)) {
             $options = array();

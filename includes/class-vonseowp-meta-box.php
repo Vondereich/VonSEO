@@ -94,7 +94,7 @@ class VonSEOWP_Meta_Box {
         if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
         if (!current_user_can('edit_post', $post_id)) return;
 
-        $fields = array('title', 'description', 'keywords', 'image', 'schema_type', 'rating', 'social_title', 'social_desc');
+        $fields = array('title', 'description', 'keywords', 'image', 'schema_type', 'rating', 'rating_count', 'social_title', 'social_desc');
         foreach ($fields as $field) {
             if (isset($_POST['vonseowp_' . $field])) {
                 if ($field === 'description') {

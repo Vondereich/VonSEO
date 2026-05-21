@@ -51,7 +51,7 @@ class VonSEOWP_Competitors {
     /**
      * Fetch and analyze a URL for SEO metrics
      */
-    private function analyze_url(string $url): array|WP_Error {
+    private function analyze_url(string $url) {
         $response = wp_safe_remote_get($url, array(
             'timeout' => 15,
             'user-agent' => 'VonSEOWP-Bot/1.0 (Premium SEO Toolkit)'
@@ -109,7 +109,7 @@ class VonSEOWP_Competitors {
         return 0;
     }
 
-    private function calculate_reading_ease(string $html): float|int {
+    private function calculate_reading_ease(string $html) {
         $text = wp_strip_all_tags($html);
         $word_count = str_word_count($text);
         if ($word_count === 0) return 0;

@@ -11,7 +11,7 @@ class VonSEOWP_Breadcrumbs {
         add_shortcode('vonseowp_breadcrumbs', array($this, 'render_shortcode'));
     }
 
-    public function render_shortcode(mixed $atts = array(), mixed $content = null, string $shortcode_tag = 'vonseo_breadcrumbs'): string {
+    public function render_shortcode($atts = array(), $content = null, string $shortcode_tag = 'vonseo_breadcrumbs'): string {
         $atts = shortcode_atts(array(
             'separator'    => '',
             'show_current' => '1',

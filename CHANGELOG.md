@@ -2,6 +2,14 @@
 
 All notable changes to the VonSEOWP plugin will be documented in this file.
 
+## [2.3.2] - 2026-05-17
+### Fixed
+- **PHP 7.4 Compatibility**: Backported PHP 8 mixed parameters and union type-hints to standard PHP 7.4-compatible signatures across all modules.
+- **Rewrite Flush Timing**: Corrected version-update check and flush_rewrite_rules execution timing by shifting it to a late `init` hook priority (999) to prevent 404 errors on sitemaps and LLM endpoints.
+- **Robots Meta Hardening**: Robots tag now respects WordPress' core "Discourage search engines from indexing this site" privacy setting, search results pages (`is_search()`), and 404 pages (`is_404()`).
+- **Dynamic Rating Count**: Restored full dynamic rating count functionality for Review/Product schema graphs by adding `rating_count` save pathways in the admin meta box.
+- **Security Hardening**: Relocated `ABSPATH` access protection guards to the absolute first line of admin layout templates to enforce strict direct-access restrictions.
+
 ## [2.3.1] - 2026-05-17
 ### Added
 - **Sitemap Index System**: Automated generation of `sitemap_index.xml` when post count exceeds 1,000 for improved crawling efficiency.

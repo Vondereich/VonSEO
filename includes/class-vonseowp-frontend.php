@@ -70,6 +70,12 @@ class VonSEOWP_Frontend {
         $url = is_singular() ? get_permalink() : (isset($_SERVER['REQUEST_URI']) ? home_url(esc_url_raw(wp_unslash($_SERVER['REQUEST_URI']))) : home_url());
         $type = 'website';
         $noindex = false;
+
+        // Respect core site visibility, search results, and 404 pages
+        if (!get_option('blog_public') || is_search() || is_404()) {
+            $noindex = true;
+        }
+
         $social_enabled = !isset($options['enable_og']) || (int) $options['enable_og'] === 1;
 
         // Per-post overrides
@@ -78,7 +84,7 @@ class VonSEOWP_Frontend {
             $custom_desc = get_post_meta($post->ID, '_vonseowp_description', true);
             $custom_keywords = get_post_meta($post->ID, '_vonseowp_keywords', true);
             $custom_image = get_post_meta($post->ID, '_vonseowp_image', true);
-            $noindex = get_post_meta($post->ID, '_vonseowp_noindex', true) === '1';
+            $noindex = $noindex || get_post_meta($post->ID, '_vonseowp_noindex', true) === '1';
 
             if ($custom_desc) {
                 $desc = $custom_desc;

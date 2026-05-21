@@ -2,9 +2,9 @@
 Contributors: vondereich, kurama87
 Tags: seo, toc, schema, sitemap, indexnow
 Requires at least: 6.0
-Tested up to: 6.9
+Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.3.1
+Stable tag: 2.3.2
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -60,6 +60,13 @@ No. VonSEO is engineered with a lightweight-first architecture using native Word
 Yes. VonSEO requires PHP 7.4+ and is fully optimized for PHP 8.2/8.3.
 
 == Changelog ==
+
+= 2.3.2 =
+*   Fixed: Backported PHP 8 mixed and union type hints to ensure PHP 7.4 compatibility.
+*   Fixed: Corrected rewrite rules flush timing to prevent 404 errors on activation/update.
+*   Fixed: Robots meta tag now respects site visibility preferences, search results, and 404 pages.
+*   Fixed: Added rating_count storage and input field support for dynamic schema ratings.
+*   Improved: Relocated security guards to the absolute top of template partials.
 
 = 2.3.1 =
 *   New: Sitemap Index system for automated scaling (sitemap_index.xml).

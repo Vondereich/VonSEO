@@ -1,11 +1,11 @@
 <?php
+if (!defined('ABSPATH')) exit;
+
 /**
  * Provide a admin area view for the plugin
  *
  * This file is used to markup the admin-facing aspects of the plugin.
  */
-if (!defined('ABSPATH')) exit;
-
 if (false) {
     /** @var WP_Post $post */
     require_once __DIR__ . '/../../_wp_stubs.php';
@@ -22,6 +22,7 @@ $vonseowp_seo_noindex = get_post_meta($post->ID, '_vonseowp_noindex', true);
 $vonseowp_seo_disable_toc = get_post_meta($post->ID, '_vonseowp_disable_toc', true);
 $vonseowp_seo_schema_type = get_post_meta($post->ID, '_vonseowp_schema_type', true);
 $vonseowp_seo_rating = get_post_meta($post->ID, '_vonseowp_rating', true);
+$vonseowp_seo_rating_count = get_post_meta($post->ID, '_vonseowp_rating_count', true);
 $vonseowp_seo_faq = get_post_meta($post->ID, '_vonseowp_faq', true);
 $vonseowp_seo_video = get_post_meta($post->ID, '_vonseowp_video', true) ?: array();
 if (!is_array($vonseowp_seo_faq)) {
@@ -204,8 +205,16 @@ $vonseowp_permalink = get_permalink($post->ID);
         </div>
 
         <div class="von-sidebar-section" id="row-review-rating">
-            <label><?php esc_html_e('Rating (0-5)', 'vonseo'); ?></label>
-            <input type="number" step="0.1" min="0" max="5" name="vonseowp_rating" value="<?php echo esc_attr($vonseowp_seo_rating); ?>" class="von-input-sm">
+            <div style="display: flex; gap: 10px;">
+                <div style="flex: 1;">
+                    <label><?php esc_html_e('Rating (0-5)', 'vonseo'); ?></label>
+                    <input type="number" step="0.1" min="0" max="5" name="vonseowp_rating" value="<?php echo esc_attr($vonseowp_seo_rating); ?>" class="von-input-sm">
+                </div>
+                <div style="flex: 1;">
+                    <label><?php esc_html_e('Rating Count', 'vonseo'); ?></label>
+                    <input type="number" min="1" name="vonseowp_rating_count" value="<?php echo esc_attr($vonseowp_seo_rating_count ?: 1); ?>" class="von-input-sm">
+                </div>
+            </div>
         </div>
 
         <hr>
