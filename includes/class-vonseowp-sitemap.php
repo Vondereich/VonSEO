@@ -84,6 +84,11 @@ class VonSEOWP_Sitemap {
         echo '<?xml version="1.0" encoding="UTF-8"?>';
         echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
 
+        if (!get_option('blog_public')) {
+            echo '</urlset>';
+            return;
+        }
+
         // Home
         echo '<url>';
         echo '<loc>' . esc_url(home_url('/')) . '</loc>';

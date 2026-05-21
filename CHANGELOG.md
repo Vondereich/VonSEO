@@ -9,6 +9,7 @@ All notable changes to the VonSEOWP plugin will be documented in this file.
 - **Robots Meta Hardening**: Robots tag now respects WordPress' core "Discourage search engines from indexing this site" privacy setting, search results pages (`is_search()`), and 404 pages (`is_404()`).
 - **Dynamic Rating Count**: Restored full dynamic rating count functionality for Review/Product schema graphs by adding `rating_count` save pathways in the admin meta box.
 - **Security Hardening**: Relocated `ABSPATH` access protection guards to the absolute first line of admin layout templates to enforce strict direct-access restrictions.
+- **Release Audit Closure**: Added rating count uninstall cleanup, hardened admin external links with `rel="noopener noreferrer"`, and made the sitemap respect WordPress site visibility privacy.
 
 ## [2.3.1] - 2026-05-17
 ### Added

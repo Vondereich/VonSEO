@@ -18,7 +18,7 @@ if (false) {
             <span class="von-badge-professional"><?php esc_html_e('Professional', 'vonseo'); ?></span>
         </div>
         <div class="von-header-right">
-            <a href="https://github.com/Vondereich" target="_blank" class="von-link-help"><?php esc_html_e('Help & Support', 'vonseo'); ?></a>
+            <a href="https://github.com/Vondereich" target="_blank" rel="noopener noreferrer" class="von-link-help"><?php esc_html_e('Help & Support', 'vonseo'); ?></a>
         </div>
     </div>
 
@@ -65,7 +65,7 @@ if (false) {
                 <h4><span class="dashicons dashicons-heart"></span> <?php esc_html_e('Support Us', 'vonseo'); ?></h4>
                 <p><?php esc_html_e('Help keep this plugin free and fast by supporting development.', 'vonseo'); ?></p>
                 <div class="von-center-row">
-                    <a href="https://paypal.me/kurama87" target="_blank" class="von-btn-donate">
+                    <a href="https://paypal.me/kurama87" target="_blank" rel="noopener noreferrer" class="von-btn-donate">
                         <span class="dashicons dashicons-heart"></span> <?php esc_html_e('Support Development', 'vonseo'); ?>
                     </a>
                 </div>
@@ -199,7 +199,7 @@ if (false) {
                     </div>
                     
                     <div class="von-form-group">
-                       <p class="von-sitemap-link"><?php esc_html_e('Your sitemap is located at:', 'vonseo'); ?> <a href="<?php echo esc_url(home_url('/sitemap.xml')); ?>" target="_blank" class="von-link"><?php echo esc_html(home_url('/sitemap.xml')); ?></a></p>
+                       <p class="von-sitemap-link"><?php esc_html_e('Your sitemap is located at:', 'vonseo'); ?> <a href="<?php echo esc_url(home_url('/sitemap.xml')); ?>" target="_blank" rel="noopener noreferrer" class="von-link"><?php echo esc_html(home_url('/sitemap.xml')); ?></a></p>
                     </div>
 
                     <h4><?php esc_html_e('Include Post Types', 'vonseo'); ?></h4>
@@ -490,7 +490,7 @@ if (false) {
                 <div class="von-card-body" style="text-align: center; padding: 40px 30px; display: flex; flex-direction: column; align-items: center;">
                     <h2 style="margin-bottom: 10px; color: #991b1b;"><?php esc_html_e('Support Development', 'vonseo'); ?></h2>
                     <p style="margin-bottom: 25px; color: #7f1d1d; font-size: 16px;"><?php esc_html_e('If this plugin helps you, consider supporting the developer to keep adding more magic!', 'vonseo'); ?></p>
-                    <a href="https://paypal.me/kurama87" target="_blank" class="von-btn-donate" style="padding: 15px 40px; font-size: 16px;">
+                    <a href="https://paypal.me/kurama87" target="_blank" rel="noopener noreferrer" class="von-btn-donate" style="padding: 15px 40px; font-size: 16px;">
                         <span class="dashicons dashicons-paypal"></span> <?php esc_html_e('Support Development via PayPal', 'vonseo'); ?>
                     </a>
                 </div>
@@ -580,7 +580,7 @@ if (false) {
                         </label>
                         <span class="von-switch-label"><?php esc_html_e('Enable IndexNow (Bing & Yandex)', 'vonseo'); ?></span>
                         <div class="von-form-desc">
-                            <?php esc_html_e('Automatically notifies search engines about new content.', 'vonseo'); ?> <a href="https://www.indexnow.org/" target="_blank"><?php esc_html_e('Learn more', 'vonseo'); ?></a>.
+                            <?php esc_html_e('Automatically notifies search engines about new content.', 'vonseo'); ?> <a href="https://www.indexnow.org/" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Learn more', 'vonseo'); ?></a>.
                             <div style="margin-top: 8px; background: #f1f5f9; padding: 10px; border-radius: 6px; font-size: 0.85em;">
                                 <strong><?php esc_html_e('IndexNow Status:', 'vonseo'); ?></strong> <span style="color: <?php echo esc_attr($vonseowp_indexnow_enabled ? '#16a34a' : '#64748b'); ?>; font-weight: bold;"><?php echo esc_html($vonseowp_indexnow_enabled ? __('Enabled', 'vonseo') : __('Disabled', 'vonseo')); ?></span><br>
                                 <strong><?php esc_html_e('Key:', 'vonseo'); ?></strong> <code><?php echo esc_html(get_option('vonseowp_indexnow_key', esc_html__('Auto-Generated on save', 'vonseo'))); ?></code>
@@ -707,7 +707,7 @@ if (false) {
                         <div style="display: flex; align-items: center; justify-content: space-between;">
                             <div>
                                 <strong style="color: #0369a1; display: block; margin-bottom: 4px;"><?php esc_html_e('Live View', 'vonseo'); ?></strong>
-                                <a href="<?php echo esc_url(home_url('/llms.txt')); ?>" target="_blank" class="von-link" style="font-weight: bold;">
+                                <a href="<?php echo esc_url(home_url('/llms.txt')); ?>" target="_blank" rel="noopener noreferrer" class="von-link" style="font-weight: bold;">
                                     <?php echo esc_html(home_url('/llms.txt')); ?> <span class="dashicons dashicons-external" style="font-size: 16px; width: 16px; height: 16px;"></span>
                                 </a>
                             </div>

@@ -35,6 +35,7 @@ $vonseowp_meta_keys = array(
     '_vonseowp_noindex',
     '_vonseowp_schema_type',
     '_vonseowp_rating',
+    '_vonseowp_rating_count',
     '_vonseowp_social_title',
     '_vonseowp_social_desc',
     '_vonseowp_faq',
