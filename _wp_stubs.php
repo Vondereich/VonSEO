@@ -207,6 +207,10 @@ if (!function_exists('get_permalink')) {
     function get_permalink($post = 0, bool $leavename = false): string { return ''; }
 }
 
+if (!function_exists('get_pagenum_link')) {
+    function get_pagenum_link(int $pagenum = 1, bool $escape = true): string { return ''; }
+}
+
 if (!function_exists('get_the_title')) {
     function get_the_title($post = 0): string { return ''; }
 }

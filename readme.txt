@@ -4,7 +4,7 @@ Tags: seo, toc, schema, sitemap, indexnow
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.3.2
+Stable tag: 2.3.3
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -61,15 +61,18 @@ Yes. VonSEO requires PHP 7.4+ and is fully optimized for PHP 8.2/8.3.
 
 == Changelog ==
 
+= 2.3.3 =
+*   Fixed: Settings pages now return to the active tab after saving instead of falling back to General.
+*   Fixed: Subdirectory homepage canonicals no longer duplicate the WordPress base path.
+*   Fixed: Empty homepage descriptions now fall back cleanly instead of rendering blank social meta tags.
+*   Fixed: Added the missing get_pagenum_link() WordPress stub for static analysis.
+*   Improved: Refined the admin header with a cleaner product description and aligned logo/title block.
+
 = 2.3.2 =
 *   Fixed: Backported PHP 8 mixed and union type hints to ensure PHP 7.4 compatibility.
 *   Fixed: Corrected rewrite rules flush timing to prevent 404 errors on activation/update.
 *   Fixed: Robots meta tag now respects site visibility preferences, search results, and 404 pages.
 *   Fixed: Added rating_count storage and input field support for dynamic schema ratings.
-*   Fixed: Settings pages now return to the active tab after saving instead of falling back to General.
-*   Fixed: Subdirectory homepage canonicals no longer duplicate the WordPress base path.
-*   Fixed: Empty homepage descriptions now fall back cleanly instead of rendering blank social meta tags.
-*   Improved: Refined the admin header with a cleaner product description and aligned logo/title block.
 *   Improved: Relocated security guards to the absolute top of template partials.
 
 = 2.3.1 =

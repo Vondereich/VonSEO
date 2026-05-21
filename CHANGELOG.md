@@ -2,6 +2,15 @@
 
 All notable changes to the VonSEOWP plugin will be documented in this file.
 
+## [2.3.3] - 2026-05-22
+### Fixed
+- **Admin Tab Persistence**: Settings pages now return to the active tab after saving instead of falling back to General.
+- **Canonical and Description Output**: Fixed subdirectory homepage canonicals and made empty homepage descriptions fall back cleanly instead of rendering blank social meta tags.
+- **IDE Support**: Added the missing `get_pagenum_link()` WordPress stub for static analysis.
+
+### Improved
+- **Admin Header Polish**: Replaced the Professional badge with a cleaner product description and aligned the logo/title block.
+
 ## [2.3.2] - 2026-05-17
 ### Fixed
 - **PHP 7.4 Compatibility**: Backported PHP 8 mixed parameters and union type-hints to standard PHP 7.4-compatible signatures across all modules.
@@ -10,9 +19,6 @@ All notable changes to the VonSEOWP plugin will be documented in this file.
 - **Dynamic Rating Count**: Restored full dynamic rating count functionality for Review/Product schema graphs by adding `rating_count` save pathways in the admin meta box.
 - **Security Hardening**: Relocated `ABSPATH` access protection guards to the absolute first line of admin layout templates to enforce strict direct-access restrictions.
 - **Release Audit Closure**: Added rating count uninstall cleanup, hardened admin external links with `rel="noopener noreferrer"`, and made the sitemap respect WordPress site visibility privacy.
-- **Admin Tab Persistence**: Settings pages now return to the active tab after saving instead of falling back to General.
-- **Admin Header Polish**: Replaced the Professional badge with a cleaner product description and aligned the logo/title block.
-- **Canonical and Description Output**: Fixed subdirectory homepage canonicals and made empty homepage descriptions fall back cleanly instead of rendering blank social meta tags.
 
 ## [2.3.1] - 2026-05-17
 ### Added
