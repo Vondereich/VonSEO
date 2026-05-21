@@ -9,13 +9,15 @@ if (false) {
     <!-- Title Header -->
     <div class="von-header">
         <div class="von-header-left">
-            <div class="von-logo">
+            <div class="von-brand-mark" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                 </svg>
-                <span>VonSEO</span>
             </div>
-            <span class="von-badge-professional"><?php esc_html_e('Professional', 'vonseo'); ?></span>
+            <div class="von-brand-copy">
+                <span class="von-logo">VonSEO</span>
+                <span class="von-brand-description"><?php esc_html_e('Performance-first SEO tools for fast, clean WordPress publishing.', 'vonseo'); ?></span>
+            </div>
         </div>
         <div class="von-header-right">
             <a href="https://github.com/Vondereich" target="_blank" rel="noopener noreferrer" class="von-link-help"><?php esc_html_e('Help & Support', 'vonseo'); ?></a>

@@ -11,6 +11,7 @@ All notable changes to the VonSEOWP plugin will be documented in this file.
 - **Security Hardening**: Relocated `ABSPATH` access protection guards to the absolute first line of admin layout templates to enforce strict direct-access restrictions.
 - **Release Audit Closure**: Added rating count uninstall cleanup, hardened admin external links with `rel="noopener noreferrer"`, and made the sitemap respect WordPress site visibility privacy.
 - **Admin Tab Persistence**: Settings pages now return to the active tab after saving instead of falling back to General.
+- **Admin Header Polish**: Replaced the Professional badge with a cleaner product description and aligned the logo/title block.
 
 ## [2.3.1] - 2026-05-17
 ### Added
