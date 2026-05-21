@@ -62,11 +62,12 @@ if (false) {
 
             <!-- Support Card -->
             <div class="von-support-card">
-                <h4><span class="dashicons dashicons-heart"></span> <?php esc_html_e('Support Us', 'vonseo'); ?></h4>
-                <p><?php esc_html_e('Help keep this plugin free and fast by supporting development.', 'vonseo'); ?></p>
+                <span class="von-support-kicker"><?php esc_html_e('Independent SEO tool', 'vonseo'); ?></span>
+                <h4><span class="dashicons dashicons-heart"></span> <?php esc_html_e('Keep VonSEO Free', 'vonseo'); ?></h4>
+                <p><?php esc_html_e('If VonSEO saves you time, a small tip helps keep updates fast, private, and bloat-free.', 'vonseo'); ?></p>
                 <div class="von-center-row">
                     <a href="https://paypal.me/kurama87" target="_blank" rel="noopener noreferrer" class="von-btn-donate">
-                        <span class="dashicons dashicons-heart"></span> <?php esc_html_e('Support Development', 'vonseo'); ?>
+                        <span class="dashicons dashicons-coffee"></span> <?php esc_html_e('Buy me a coffee', 'vonseo'); ?>
                     </a>
                 </div>
             </div>
@@ -486,12 +487,18 @@ if (false) {
             </div>
 
             <!-- Support Development -->
-            <div class="von-card" style="background: linear-gradient(135deg, #fef2f2 0%, #fff1f2 100%); border-color: #fecaca; margin-top: 30px;">
-                <div class="von-card-body" style="text-align: center; padding: 40px 30px; display: flex; flex-direction: column; align-items: center;">
-                    <h2 style="margin-bottom: 10px; color: #991b1b;"><?php esc_html_e('Support Development', 'vonseo'); ?></h2>
-                    <p style="margin-bottom: 25px; color: #7f1d1d; font-size: 16px;"><?php esc_html_e('If this plugin helps you, consider supporting the developer to keep adding more magic!', 'vonseo'); ?></p>
-                    <a href="https://paypal.me/kurama87" target="_blank" rel="noopener noreferrer" class="von-btn-donate" style="padding: 15px 40px; font-size: 16px;">
-                        <span class="dashicons dashicons-paypal"></span> <?php esc_html_e('Support Development via PayPal', 'vonseo'); ?>
+            <div class="von-card von-donate-card">
+                <div class="von-card-body">
+                    <span class="von-donate-eyebrow"><?php esc_html_e('Support independent development', 'vonseo'); ?></span>
+                    <h2><?php esc_html_e('Help keep VonSEO free, fast, and private.', 'vonseo'); ?></h2>
+                    <p><?php esc_html_e('VonSEO is built as a lightweight alternative to bloated SEO suites. If it helps your site, your support keeps the project moving without telemetry, lock-ins, or paywalls.', 'vonseo'); ?></p>
+                    <div class="von-donate-points" aria-label="<?php esc_attr_e('Project values', 'vonseo'); ?>">
+                        <span><span class="dashicons dashicons-yes-alt"></span><?php esc_html_e('No tracking', 'vonseo'); ?></span>
+                        <span><span class="dashicons dashicons-yes-alt"></span><?php esc_html_e('Free updates', 'vonseo'); ?></span>
+                        <span><span class="dashicons dashicons-yes-alt"></span><?php esc_html_e('Zero bloat', 'vonseo'); ?></span>
+                    </div>
+                    <a href="https://paypal.me/kurama87" target="_blank" rel="noopener noreferrer" class="von-btn-donate von-btn-donate-large">
+                        <span class="dashicons dashicons-coffee"></span> <?php esc_html_e('Buy me a coffee', 'vonseo'); ?>
                     </a>
                 </div>
             </div>
