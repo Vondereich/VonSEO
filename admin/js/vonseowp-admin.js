@@ -1,15 +1,61 @@
 jQuery(document).ready(function ($) {
   // AI Logic removed per user request (Simplified UI)
 
-  // Tab switching (redundant but safe if inlined script is removed)
-  window.openTab = function (evt, tabName) {
-    if (evt) evt.preventDefault();
+  const tabStorageKey = "vonseowp_active_settings_tab";
+  const getValidTab = function (tabName) {
+    return tabName && $("#" + tabName + ".von-tab-content").length ? tabName : "tab-general";
+  };
+
+  const activateAdminTab = function (tabName, opts) {
+    const options = opts || {};
+    const activeTab = getValidTab(tabName);
+
     $(".von-tab-content").hide();
     $(".von-tab-link").removeClass("active");
-    $("#" + tabName).show();
-    $(evt.currentTarget).addClass("active");
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    $("#" + activeTab).show();
+    $('.von-tab-link[href="#' + activeTab + '"]').addClass("active");
+
+    try {
+      window.sessionStorage.setItem(tabStorageKey, activeTab);
+    } catch (error) {
+      // Some hardened browsers disable sessionStorage; tab switching still works.
+    }
+
+    if (options.updateHash !== false && window.history && window.history.replaceState) {
+      window.history.replaceState(null, "", "#" + activeTab);
+    }
+
+    if (options.scroll !== false) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
+
+  // Tab switching (used by inline onclick handlers in the settings partial)
+  window.openTab = function (evt, tabName) {
+    if (evt) evt.preventDefault();
+    activateAdminTab(tabName);
+  };
+
+  $(".von-settings-form").on("submit", function () {
+    const activeTab = $(".von-tab-link.active").attr("href");
+    if (activeTab) {
+      try {
+        window.sessionStorage.setItem(tabStorageKey, activeTab.replace("#", ""));
+      } catch (error) {
+        // Saving should never be blocked by tab-state storage.
+      }
+    }
+  });
+
+  const hashTab = window.location.hash ? window.location.hash.replace("#", "") : "";
+  let storedTab = "";
+  try {
+    storedTab = window.sessionStorage.getItem(tabStorageKey) || "";
+  } catch (error) {
+    storedTab = "";
+  }
+  activateAdminTab(hashTab || storedTab || "tab-general", { scroll: false, updateHash: !!hashTab });
+
   // --- ROBOTS.TXT RESET ---
   $("#von-reset-robots").on("click", function () {
     if (
