@@ -25,9 +25,11 @@ class VonSEOWP_Meta_Box {
         wp_enqueue_style('vonseowp-metabox-css', VONSEOWP_URL . 'admin/css/vonseowp-admin.css', array(), VONSEOWP_VERSION);
         wp_enqueue_style('vonseowp-sidebar-css', VONSEOWP_URL . 'admin/css/vonseowp-sidebar.css', array(), VONSEOWP_VERSION);
         wp_enqueue_style('vonseowp-social-previews-css', VONSEOWP_URL . 'admin/css/vonseowp-social-previews.css', array(), VONSEOWP_VERSION);
-        wp_enqueue_script('vonseowp-metabox-js', VONSEOWP_URL . 'admin/js/vonseowp-metabox.js', array('jquery'), VONSEOWP_VERSION, true);
+        wp_enqueue_script('vonseowp-analyzer-js', VONSEOWP_URL . 'admin/js/vonseowp-analyzer.js', array(), VONSEOWP_VERSION, true);
+        wp_enqueue_script('vonseowp-metabox-js', VONSEOWP_URL . 'admin/js/vonseowp-metabox.js', array('jquery', 'vonseowp-analyzer-js'), VONSEOWP_VERSION, true);
 
         wp_localize_script('vonseowp-metabox-js', 'vonseowp_metabox_data', array(
+            'site_url' => home_url('/'),
             'analysis' => array(
                 'waiting_keyword' => __('Please set a focus keyword to start analysis.', 'vonseo'),
                 'analyzing'       => __('Analyzing content...', 'vonseo'),
@@ -39,6 +41,13 @@ class VonSEOWP_Meta_Box {
                 'kw_missing_title' => __('Focus keyword missing from SEO Title.', 'vonseo'),
                 'kw_found_desc'   => __('Focus keyword found in Meta Description.', 'vonseo'),
                 'kw_missing_desc'  => __('Focus keyword missing from Meta Description.', 'vonseo'),
+                'kw_found_intro'   => __('Focus keyword appears in the opening paragraph.', 'vonseo'),
+                'kw_missing_intro' => __('Add the focus keyword near the start of the content.', 'vonseo'),
+                /* translators: %s: keyword density percentage */
+                'density_good'     => __('Keyword density looks natural (%s%%).', 'vonseo'),
+                /* translators: %s: keyword density percentage */
+                'density_warn'     => __('Keyword density may need adjustment (%s%%).', 'vonseo'),
+                'density_bad'      => __('Focus keyword is missing or overused in the body content.', 'vonseo'),
                 /* translators: %d: word count */
                 'content_good'    => __('Content length is good (%d words).', 'vonseo'),
                 /* translators: %d: word count */
@@ -51,6 +60,16 @@ class VonSEOWP_Meta_Box {
                 'desc_acceptable' => __('Meta description length is acceptable.', 'vonseo'),
                 /* translators: %s: status text */
                 'desc_bad'        => __('Meta description is %s.', 'vonseo'),
+                'headings_good'   => __('Heading structure supports the focus keyword.', 'vonseo'),
+                'headings_warn'   => __('Add clearer H2/H3 structure or include the focus keyword in a heading.', 'vonseo'),
+                'headings_bad'    => __('Add headings to structure this content.', 'vonseo'),
+                /* translators: %d: image count */
+                'images_good'     => __('All detected images include ALT text (%d images).', 'vonseo'),
+                'images_none'     => __('No images detected in the editor content.', 'vonseo'),
+                /* translators: %d: missing image ALT count */
+                'images_bad'      => __('Add ALT text to %d image(s).', 'vonseo'),
+                'links_good'      => __('Content includes both internal and external links.', 'vonseo'),
+                'links_warn'      => __('Add at least one useful internal or external link.', 'vonseo'),
                 'faq_q'           => __('Question...', 'vonseo'),
                 'faq_a'           => __('Answer...', 'vonseo'),
                 'remove'          => __('Remove', 'vonseo'),

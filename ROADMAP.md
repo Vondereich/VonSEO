@@ -1,61 +1,90 @@
-# Roadmap v2.1.5+
+# VonSEO Lean Roadmap
 
-Based on key improvement suggestions, here are the development phases for VonSEO:
+VonSEO should stay a lightweight WordPress SEO toolkit: local-first, privacy-safe, and useful inside normal publishing workflows. New features must earn their footprint.
 
-## v2.1.x - Completed (Essential Tools)
-- [x] **FAQ Schema (JSON-LD)**: Added repeater for FAQ snippets.
-- [x] **Advanced Robots.txt Editor**: GUI editor with "Pro Rules" reset.
-- [x] **Social Media Preview**: Real-time FB/Twitter card previews.
-- [x] **Structured Data Testing**: Direct links to Google Rich Results & Schema Validator.
-- [x] **Video Schema Support**: VideoObject support for better indexing.
-- [x] **Header Cleanup**: (v2.1.9) Clean meta tags like wp_generator, RSD, etc.
+## Product Guardrails
+- No telemetry, tracking, SaaS lock-in, or required external API.
+- No custom database tables unless a feature cannot work safely with `post_meta`, `wp_options`, or transients.
+- No heavy background scanners by default; expensive checks must be manual, cached, or limited.
+- No AI wording unless the feature is actually AI-powered. Prefer "assistant", "suggestions", or "analysis" for local logic.
+- Every admin action must follow WordPress patterns: capability checks, nonces, sanitization, escaping, and prefixed code.
 
-## v2.2.7 - Utility & Hygiene (Completed)
-- [x] **Admin Quick Edit**: SEO columns (Title/Desc/Score) in "All Posts" list with inline editing.
-- [x] **RSS Footer Protection**: Auto-append "Originally appeared on..." to RSS feeds.
-- [x] **Code Hygiene**: Removed legacy IDE stubs and implemented strict type hints globally.
-- [x] **Security Audit**: Completed 4-Layer Defense audit and Quick Edit JS robustness patch.
+## Completed Baseline
 
-## v2.2.6 - Fixes & Redirects (Completed)
-- [x] **Attachment URL Redirects**: Clean redirection for media pages to parent posts.
-- [x] **IDE Stability**: Refined shared stubs for attachment-related functions.
+### v2.1.x - Essential Tools
+- [x] FAQ Schema (JSON-LD) repeater.
+- [x] Advanced robots.txt editor with Pro Rules reset.
+- [x] Social media previews for Facebook and Twitter cards.
+- [x] Structured data testing links.
+- [x] VideoObject schema support.
+- [x] Header cleanup for noisy WordPress meta tags.
 
-## v2.2.2 - Breadcrumbs & Settings Sync (Completed)
-- [x] **Breadcrumbs Generator**: Added [vonseo_breadcrumbs] shortcode and vonseo_breadcrumbs() theme helper for themes.
-- [x] **Frontend Settings Sync**: Homepage metadata, social defaults, and verification tags follow saved admin settings.
+### v2.2.x - Utility, Redirects, and Hygiene
+- [x] Admin Quick Edit SEO columns and inline editing.
+- [x] RSS footer protection.
+- [x] Attachment URL redirects.
+- [x] Breadcrumbs shortcode and theme helper.
+- [x] Frontend settings sync for homepage metadata, social defaults, and verification tags.
+- [x] Internationalization and JS localization cleanup.
+- [x] PHP 7.4 compatibility and security hardening.
 
-## v2.2.1 - Internationalization & Cleanup (Completed)
-- [x] **Full English Standardization**: Wrap all hardcoded strings in I18n functions.
-- [x] **JS Localization**: Localize client-side strings for Meta Box and Admin UI.
-- [x] **Asset Optimization**: Minimize code bloat and improve script initialization.
+### v2.3.0 - v2.3.3 - Intelligence and Release Polish
+- [x] Table of Contents generator.
+- [x] System Health Monitor.
+- [x] Frontend asset layer for public components.
+- [x] Duplicate meta output guards.
+- [x] Sitemap index and 1,000-post pagination.
+- [x] Competitor analysis cache.
+- [x] Canonical, description fallback, admin tab persistence, and header polish.
 
-## v2.3.0 - Intelligence & Performance (Completed)
-- [x] **Table of Contents Generator**: Auto-generate TOC from H1-H6 headers with interactive toggle.
-- [x] **System Health Monitor**: Real-time diagnostic panel for SEO environment compatibility.
-- [x] **Security Hardening**: (v2.3.0 Final) Completed Enterprise-Grade audit (SQLi, XSS, CSRF protected).
-- [x] **Frontend Asset Layer**: Optimized CSS/JS footprint for professional public components.
-- [x] **Duplicate Guard**: Implemented $GLOBALS guards for clean, unique meta tag output.
+## v2.3.4 - Lean Content Analyzer (Completed)
 
-## v2.3.1 - Sitemap Scaling & UI Refinement (Completed)
-- [x] **Sitemap Pagination**: Implement limit of 1,000 posts per sitemap page for better performance on large sites.
-- [x] **Branding Refinement**: Replace the current "Lightning" icon with a more premium, modern professional logo and polish the header typography.
+Goal: improve the existing editor SEO Health panel without adding server load or external dependencies.
 
-## v2.3.4 - Content Analysis (Real-time JS Analyzer)
-- [ ] **Real-time SEO Score**: Instant content analysis during authoring (Keyword density, heading structure check, image ALT scan).
-- [ ] **Lightweight JS Engine**: Modular analyzer logic optimized to remain under 20KB to ensure zero editor lag.
-- [ ] **Live Suggestions**: Smart prompts for meta-description length and title optimization.
+- [x] Split analyzer logic into small local JS functions for readability and testability.
+- [x] Add keyword density check with a sane warning range, not a rigid ranking promise.
+- [x] Add heading structure checks: missing H1/H2, repeated empty headings, and focus keyword presence.
+- [x] Add image ALT scan for editor content.
+- [x] Add first-paragraph keyword check.
+- [x] Add internal/external link presence checks.
+- [x] Make score rules explicit so the sidebar score and All Posts score can be aligned later.
+- [x] Keep the analyzer lightweight and loaded only on post/page edit screens.
 
-## v2.4 - Expert Audit (PHP Local Analyzer)
-- [ ] **Full Local SEO Audit Engine**: Comprehensive site-wide scanner and technical checker processed entirely on the user's server.
-- [ ] **Zero API Dependency**: No data is sent to external servers for auditing, ensuring maximum privacy and 100% uptime.
-- [ ] **Performance Benchmarking**: Localized speed and resource checks for core web vitals.
+## Next: v2.3.5 - Score Consistency and Editorial Polish
 
-## Future Roadmap
-- [ ] **Smart Alt Text**: Automated generation of alt text for images to save time.
-- [ ] **Internal Link Suggestions**: Auto-suggest internal links based on keywords within the post.
-- [ ] **Google Search Console Integration**: Display ranking keywords, CTR, and impressions directly in the dashboard via secure API.
+Goal: make existing SEO scoring feel trustworthy across the admin UI.
 
-## Long Term Goals
-- **SaaS Connectivity**: Sync settings between multiple sites (VonSEO Cloud).
-- **Competitor Watch**: Daily tracking of competitor rankings.
-- **Bulk Productivity Suite**: Batch processing for meta tags and content rewriting.
+- [ ] Align the All Posts score column with the editor analyzer rules where practical.
+- [ ] Improve empty-state guidance without adding marketing copy.
+- [ ] Add clearer warnings for title and description length.
+- [ ] Keep score calculations local and deterministic.
+
+## Later: v2.4 - Local Site Audit Lite
+
+Goal: add a manual, privacy-safe audit screen for technical SEO checks that can run on shared hosting.
+
+- [ ] Manual scan only; no scheduled crawler by default.
+- [ ] Check sitemap availability, robots rules, homepage metadata, site visibility, and permalink health.
+- [ ] Sample posts/pages for missing titles, descriptions, noindex usage, and schema presence.
+- [ ] Cache scan results with transients.
+- [ ] Show actionable findings, not vanity scores.
+- [ ] Avoid crawling entire large sites in one request.
+
+## Parking Lot
+
+These may be useful, but should not be built until the lean analyzer and local audit are proven.
+
+- [ ] Publisher schema variants such as NewsArticle or ScholarlyArticle.
+- [ ] Internal link suggestions based on current post content and existing titles.
+- [ ] Smart image ALT suggestions using local filename/title/context only.
+- [ ] Import/export settings for migration between sites.
+
+## Avoid for Now
+
+These create bloat, support burden, or privacy concerns that do not fit the current product direction.
+
+- [ ] Google Search Console dashboard integration.
+- [ ] SaaS connectivity or VonSEO Cloud sync.
+- [ ] Competitor rank tracking.
+- [ ] Bulk content rewriting.
+- [ ] Required external AI generation.

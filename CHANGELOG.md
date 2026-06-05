@@ -2,6 +2,14 @@
 
 All notable changes to the VonSEOWP plugin will be documented in this file.
 
+## [2.3.4] - 2026-06-05
+### Added
+- **Lean Content Analyzer**: Added a local editor-only analyzer core for keyword density, heading structure, image ALT coverage, first-paragraph keyword usage, and link presence.
+- **Analyzer Test Coverage**: Added a focused Node test for the lightweight analyzer rules.
+
+### Improved
+- **SEO Health Panel**: Replaced the older five-check score with explicit deterministic rules while keeping the analyzer local and loaded only on post/page edit screens.
+
 ## [2.3.3] - 2026-05-22
 ### Fixed
 - **Admin Tab Persistence**: Settings pages now return to the active tab after saving instead of falling back to General.

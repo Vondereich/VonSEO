@@ -64,10 +64,10 @@ VonSEOWP is engineered with a lightweight-first architecture using native WordPr
 ---
 
 ## 🗺️ Roadmap
-- [ ] Expanded Publisher Schema (News/Scientific)
-- [ ] Real-time Local SEO Audit Engine (v2.4)
-- [ ] Performance-Focused AI Editorial Assistance
-- [ ] Advanced Internal Link Mapping
+- [x] Lean local content analyzer (v2.3.4)
+- [ ] Score consistency across editor and All Posts (v2.3.5)
+- [ ] Manual Local Site Audit Lite (v2.4)
+- [ ] Publisher schema variants after the lean audit path is proven
 
 ---
 

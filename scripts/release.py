@@ -26,10 +26,10 @@ def main():
     
     staging_dir = os.path.join(dist_dir, plugin_name)
 
-    print(f"🚀 Starting build for {plugin_name} v{version}...")
+    print(f"Starting build for {plugin_name} v{version}...")
 
     # 1. CLEANUP PHASE
-    print(f"🧹 Cleaning up old ZIP files...")
+    print(f"Cleaning up old ZIP files...")
     
     # Remove ALL old zip versions to keep root clean
     for f in os.listdir('.'):
@@ -45,11 +45,11 @@ def main():
         try:
             shutil.rmtree(dist_dir, onerror=remove_readonly)
         except Exception as e:
-            print(f"⚠️  Warning: Failed to clean {dist_dir}: {e}")
+            print(f"Warning: Failed to clean {dist_dir}: {e}")
     
     os.makedirs(staging_dir, exist_ok=True)
 
-    print(f"📦 Staging files...")
+    print(f"Staging files...")
     
     # 2. STAGING PHASE
     include_dirs = ['admin', 'includes', 'assets', 'languages']
@@ -62,7 +62,7 @@ def main():
         if os.path.exists(file):
             shutil.copy2(file, staging_dir)
 
-    print(f"🗜️  Zipping {plugin_name}...")
+    print(f"Zipping {plugin_name}...")
     
     # 3. ZIP PHASE
     # Create the versioned ZIP directly from the staging folder metadata
@@ -75,7 +75,7 @@ def main():
                 arcname = os.path.relpath(file_path, dist_dir)
                 zipf.write(file_path, arcname)
 
-    print(f"✅ Build successful!")
+    print(f"Build successful!")
     print(f"   - Release File (Root): {os.path.abspath(zip_path)}")
     print(f"   - OTA Ready: YES (Pattern matched by Updater)")
 

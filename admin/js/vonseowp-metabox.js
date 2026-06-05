@@ -67,21 +67,7 @@ jQuery(document).ready(function ($) {
     }
   };
 
-  // --- ANALYSIS ENGINE (The Brain) ---
-  const runAnalysis = () => {
-    let items = [];
-    let score = 0;
-    let totalChecks = 0;
-
-    const keyword = $("#vonseowp_keywords")
-      .val()
-      .split(",")[0]
-      .trim()
-      .toLowerCase();
-    const title = ($("#vonseowp_title").val() || "").toLowerCase();
-    const desc = ($("#vonseowp_description").val() || "").toLowerCase();
-
-    // Use TinyMCE content if available (Block Editor or Classic)
+  const getEditorContent = () => {
     let content = "";
     if (
       typeof wp !== "undefined" &&
@@ -97,108 +83,89 @@ jQuery(document).ready(function ($) {
     }
     // Fallback for classic editor
     if (!content && typeof tinymce !== "undefined" && tinymce.activeEditor) {
-      content = tinymce.activeEditor.getContent({ format: "text" });
+      content = tinymce.activeEditor.getContent();
     }
 
-    content = (content || "").toLowerCase();
-    const wordCount = content.split(/\s+/).length;
+    return content || $("#von-post-content-ref").val() || "";
+  };
 
-    // 1. Keyword in Title
-    totalChecks++;
-    if (keyword && title.includes(keyword)) {
-      items.push({ status: "good", msg: vonseowp_metabox_data.analysis.kw_found_title });
-      score += 20;
-    } else if (keyword) {
-      items.push({
-        status: "bad",
-        msg: vonseowp_metabox_data.analysis.kw_missing_title,
-      });
+  const formatAnalysisMessage = (check) => {
+    const messages = vonseowp_metabox_data.analysis;
+    const meta = check.meta || {};
+
+    switch (check.code) {
+      case "title_keyword":
+        return check.status === "good" ? messages.kw_found_title : messages.kw_missing_title;
+      case "description_keyword":
+        return check.status === "good" ? messages.kw_found_desc : messages.kw_missing_desc;
+      case "first_paragraph_keyword":
+        return check.status === "good" ? messages.kw_found_intro : messages.kw_missing_intro;
+      case "keyword_density": {
+        const density = Math.round((meta.density || 0) * 10) / 10;
+        if (check.status === "good") return messages.density_good.replace("%s", density);
+        if (check.status === "warn") return messages.density_warn.replace("%s", density);
+        return messages.density_bad;
+      }
+      case "content_length":
+        return check.status === "good"
+          ? messages.content_good.replace("%d", meta.wordCount || 0)
+          : messages.content_short.replace("%d", meta.wordCount || 0);
+      case "title_length":
+        if (check.status === "good") return messages.title_optimal;
+        if (check.status === "warn") return messages.title_truncated;
+        return messages.title_bad.replace("%s", (meta.length || 0) < 30 ? messages.too_short : messages.too_long);
+      case "description_length":
+        if (check.status === "good") return messages.desc_optimal;
+        if (check.status === "warn") return messages.desc_acceptable;
+        return messages.desc_bad.replace("%s", (meta.length || 0) < 90 ? messages.too_short : messages.too_long);
+      case "heading_structure":
+        if (check.status === "good") return messages.headings_good;
+        if (check.status === "warn") return messages.headings_warn;
+        return messages.headings_bad;
+      case "image_alt":
+        if (check.status === "good") return messages.images_good.replace("%d", meta.total || 0);
+        if ((meta.total || 0) === 0) return messages.images_none;
+        return messages.images_bad.replace("%d", meta.missingAlt || 0);
+      case "link_presence":
+        if (check.status === "good") return messages.links_good;
+        return messages.links_warn;
+      default:
+        return messages.analyzing;
+    }
+  };
+
+  // --- ANALYSIS ENGINE ---
+  const runAnalysis = () => {
+    const keyword = $("#vonseowp_keywords").val().split(",")[0].trim();
+    const title = $("#vonseowp_title").val() || "";
+    const desc = $("#vonseowp_description").val() || "";
+    const analyzer = window.VonSEOWPAnalyzer;
+    const $list = $("#von-analysis-list");
+
+    if (!analyzer || typeof analyzer.analyze !== "function") {
+      $list.empty().append(
+        '<li class="item wait"><span class="dashicons dashicons-clock"></span> ' + vonseowp_metabox_data.analysis.analyzing + "</li>",
+      );
+      return;
     }
 
-    // 2. Keyword in Desc
-    totalChecks++;
-    if (keyword && desc.includes(keyword)) {
-      items.push({
-        status: "good",
-        msg: vonseowp_metabox_data.analysis.kw_found_desc,
-      });
-      score += 20;
-    } else if (keyword) {
-      items.push({
-        status: "bad",
-        msg: vonseowp_metabox_data.analysis.kw_missing_desc,
-      });
-    }
-
-    // 3. Content Length
-    totalChecks++;
-    if (wordCount > 300) {
-      items.push({
-        status: "good",
-        msg: vonseowp_metabox_data.analysis.content_good.replace("%d", wordCount),
-      });
-      score += 20;
-    } else {
-      items.push({
-        status: "warn",
-        msg: vonseowp_metabox_data.analysis.content_short.replace("%d", wordCount),
-      });
-      score += 10;
-    }
-
-    // 4. Title Length
-    totalChecks++;
-    if (title.length >= 30 && title.length <= 70) {
-      let status = title.length >= 45 && title.length <= 63 ? "good" : "warn";
-      items.push({
-        status: status,
-        msg:
-          status === "good"
-            ? vonseowp_metabox_data.analysis.title_optimal
-            : vonseowp_metabox_data.analysis.title_truncated,
-      });
-      score += status === "good" ? 20 : 15;
-    } else {
-      let lengthText = title.length < 30 ? vonseowp_metabox_data.analysis.too_short : vonseowp_metabox_data.analysis.too_long;
-      items.push({
-        status: "bad",
-        msg: vonseowp_metabox_data.analysis.title_bad.replace("%s", lengthText),
-      });
-      score += 5;
-    }
-
-    // 5. Desc Length
-    totalChecks++;
-    if (desc.length >= 90 && desc.length <= 175) {
-      let status = desc.length >= 120 && desc.length <= 160 ? "good" : "warn";
-      items.push({
-        status: status,
-        msg:
-          status === "good"
-            ? vonseowp_metabox_data.analysis.desc_optimal
-            : vonseowp_metabox_data.analysis.desc_acceptable,
-      });
-      score += status === "good" ? 20 : 15;
-    } else {
-      let lengthText = desc.length < 90 ? vonseowp_metabox_data.analysis.too_short : vonseowp_metabox_data.analysis.too_long;
-      items.push({
-        status: "bad",
-        msg: vonseowp_metabox_data.analysis.desc_bad.replace("%s", lengthText),
-      });
-      score += 5;
-    }
+    const result = analyzer.analyze({
+      keyword: keyword,
+      title: title,
+      description: desc,
+      content: getEditorContent(),
+      siteUrl: vonseowp_metabox_data.site_url || "",
+    });
 
     // Render List
-    const $list = $("#von-analysis-list");
     $list.empty();
 
-    if (!keyword) {
+    if (result.waitingForKeyword) {
       $list.append(
         '<li class="item wait"><span class="dashicons dashicons-clock"></span> ' + vonseowp_metabox_data.analysis.waiting_keyword + "</li>",
       );
-      score = 0;
     } else {
-      items.forEach((i) => {
+      result.checks.forEach((i) => {
         let icon =
           i.status === "good"
             ? "yes-alt"
@@ -207,13 +174,13 @@ jQuery(document).ready(function ($) {
               : "dismiss";
         let li = $("<li>").addClass("item " + i.status);
         li.append($("<span>").addClass("dashicons dashicons-" + icon));
-        li.append(" " + i.msg); // i.msg is from items array, safe but kept text-only
+        li.append(" " + formatAnalysisMessage(i));
         $list.append(li);
       });
     }
 
     // Render Score
-    if (!keyword) score = 0;
+    const score = result.score || 0;
     $("#von-analysis-score").text(score + "/100");
     $("#overall-score-circle").text(score);
     $("#opt-percent").text(score + "%");
@@ -241,33 +208,15 @@ jQuery(document).ready(function ($) {
 
   // Watch WP Editor changes (Advanced)
   if (typeof wp !== "undefined" && wp.data && wp.data.subscribe) {
+    let analysisTimer = null;
     wp.data.subscribe(function () {
-      // Debounce helps performance
-      // For now, simpler implementation:
-      // runAnalysis();
+      window.clearTimeout(analysisTimer);
+      analysisTimer = window.setTimeout(runAnalysis, 400);
     });
   }
 
   // --- AI MAGIC LOGIC ---
-  const getPostContent = () => {
-    let content = "";
-    if (
-      typeof wp !== "undefined" &&
-      wp.data &&
-      wp.data.select &&
-      wp.data.select("core/editor")
-    ) {
-      try {
-        content = wp.data
-          .select("core/editor")
-          .getEditedPostAttribute("content");
-      } catch (e) { }
-    }
-    if (!content && typeof tinymce !== "undefined" && tinymce.activeEditor) {
-      content = tinymce.activeEditor.getContent({ format: "text" });
-    }
-    return content || $("#von-post-content-ref").val() || "";
-  };
+  const getPostContent = () => getEditorContent();
 
   const getPostTitle = () => {
     let title = "";
