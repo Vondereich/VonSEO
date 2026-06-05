@@ -63,6 +63,25 @@ VonSEOWP is engineered with a lightweight-first architecture using native WordPr
 
 ---
 
+## FAQ
+
+**Where is the analyzer?**
+Open any Post or Page editor and use the VonSEO Content Intelligence sidebar/metabox. It is not a public frontend script.
+
+**Does the analyzer send draft content outside WordPress?**
+No. The v2.3.4 analyzer runs locally in the editor screen and does not require an external API.
+
+**Does VonSEO create custom database tables?**
+No. It uses native WordPress options and post meta.
+
+**Is there a hidden Pro layer?**
+No. The plugin is built as a lightweight toolkit without forced upgrades or paywalled admin tabs.
+
+**Does it support large sites?**
+Yes. The sitemap system supports sitemap indexing and paginated sitemap output.
+
+---
+
 ## 🗺️ Roadmap
 - [x] Lean local content analyzer (v2.3.4)
 - [ ] Score consistency across editor and All Posts (v2.3.5)

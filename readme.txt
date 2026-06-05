@@ -56,6 +56,33 @@ A clean, focused editorial workflow designed for speed and usability.
 = Does this plugin slow down my site? =
 No. VonSEO is engineered with a lightweight-first architecture using native WordPress storage and minimal frontend overhead.
 
+= Where is the content analyzer? =
+Open any Post or Page editor and use the VonSEO Content Intelligence sidebar/metabox. The analyzer does not run on the public frontend.
+
+= Does the analyzer send my draft content anywhere? =
+No. The v2.3.4 analyzer runs locally in the editor screen. It checks the current draft content in your browser and does not require an external API.
+
+= Does VonSEO create custom database tables? =
+No. VonSEO uses native WordPress options and post meta so it stays portable, backup-friendly, and easy to remove.
+
+= Does VonSEO include paywalled Pro features? =
+No. VonSEO is built as a complete lightweight toolkit without hidden Pro tabs or forced upgrades.
+
+= Can I use VonSEO with the block editor and classic editor? =
+Yes. The editor tools are designed to read content from the WordPress editor and include a fallback for classic editor content.
+
+= Does VonSEO generate schema automatically? =
+Yes. VonSEO can output optimized JSON-LD schema such as Article, FAQ, Video, Review, and Breadcrumbs depending on the saved post settings.
+
+= Does VonSEO support large sites? =
+Yes. The sitemap system supports sitemap indexing and paginates large post sets to avoid one oversized sitemap file.
+
+= Does IndexNow require an external account? =
+No external account is required. IndexNow uses a site key and notifies supported search engines when enabled.
+
+= Can I remove VonSEO cleanly? =
+Yes. VonSEO avoids custom tables and includes uninstall cleanup for its stored options and metadata.
+
 = Is this compatible with PHP 8.2? =
 Yes. VonSEO requires PHP 7.4+ and is fully optimized for PHP 8.2/8.3.
 
