@@ -2,6 +2,15 @@
 
 All notable changes to the VonSEOWP plugin will be documented in this file.
 
+## [2.3.5] - 2026-06-05
+### Improved
+- **Lean Frontend Meta Output**: Removed the public generator tag and wrapper comments to reduce version exposure and head markup noise.
+- **Social Image Fallback**: Uses the WordPress site icon as a fallback social image when no post image, featured image, or default social image is configured.
+- **Social Image Accuracy**: Removed fixed Open Graph image dimension tags so fallback icons are not described with incorrect dimensions.
+
+### Dev
+- Added a focused frontend meta regression test for lean public output and social image fallback.
+
 ## [2.3.4] - 2026-06-05
 ### Added
 - **Lean Content Analyzer**: Added a local editor-only analyzer core for keyword density, heading structure, image ALT coverage, first-paragraph keyword usage, and link presence.

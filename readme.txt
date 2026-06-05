@@ -4,7 +4,7 @@ Tags: seo, toc, schema, sitemap, indexnow
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.3.4
+Stable tag: 2.3.5
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -87,6 +87,12 @@ Yes. VonSEO avoids custom tables and includes uninstall cleanup for its stored o
 Yes. VonSEO requires PHP 7.4+ and is fully optimized for PHP 8.2/8.3.
 
 == Changelog ==
+
+= 2.3.5 =
+*   Improved: Removed the public generator tag and wrapper comments to keep frontend head output lean.
+*   Improved: Added a WordPress site icon fallback for social image tags when no post/default image is configured.
+*   Improved: Removed fixed Open Graph image dimension tags to avoid inaccurate dimensions on fallback images.
+*   Dev: Added frontend meta regression test coverage.
 
 = 2.3.4 =
 *   New: Local editor-only content analyzer for keyword density, heading structure, image ALT coverage, first-paragraph keyword usage, and link presence.

@@ -50,7 +50,16 @@ Goal: improve the existing editor SEO Health panel without adding server load or
 - [x] Make score rules explicit so the sidebar score and All Posts score can be aligned later.
 - [x] Keep the analyzer lightweight and loaded only on post/page edit screens.
 
-## Next: v2.3.5 - Score Consistency and Editorial Polish
+## v2.3.5 - Lean Frontend Meta Output (Completed)
+
+Goal: keep public head markup clean while preserving useful social preview tags.
+
+- [x] Remove public generator/version meta output.
+- [x] Remove public wrapper comments around VonSEO meta tags.
+- [x] Add WordPress site icon fallback for social image tags.
+- [x] Keep site title casing under the owner's WordPress settings instead of mutating it in plugin output.
+
+## Next: v2.3.6 - Score Consistency and Editorial Polish
 
 Goal: make existing SEO scoring feel trustworthy across the admin UI.
 

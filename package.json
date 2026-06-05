@@ -1,11 +1,12 @@
 {
   "name": "vonseo",
-  "version": "2.3.4",
+  "version": "2.3.5",
   "description": "Premium Lightweight SEO Toolkit for WordPress",
   "main": "vonseo.php",
   "scripts": {
     "release": "python scripts/release.py",
-    "test:analyzer": "node scripts/test-analyzer.cjs"
+    "test:analyzer": "node scripts/test-analyzer.cjs",
+    "test:frontend-meta": "node scripts/test-frontend-meta.cjs"
   },
   "keywords": [
     "seo",

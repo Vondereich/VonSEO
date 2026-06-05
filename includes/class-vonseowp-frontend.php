@@ -140,6 +140,9 @@ class VonSEOWP_Frontend {
         // Sanitize
         $title = wp_get_document_title(); // Get the filtered title for OG tags
         $desc = trim(wp_strip_all_tags($desc));
+        if (!$image && has_site_icon()) {
+            $image = get_site_icon_url(512);
+        }
         
         $parsed_path = wp_parse_url($url, PHP_URL_PATH);
         $home_path = wp_parse_url(home_url('/'), PHP_URL_PATH);
@@ -149,13 +152,10 @@ class VonSEOWP_Frontend {
         $canonical_path = $parsed_path ? ltrim($parsed_path, '/') : '';
         $canonical = !empty($options['canonical_host']) ? trailingslashit($options['canonical_host']) . $canonical_path : $url;
 
-        echo "\n<!-- VonSEOWP v" . esc_html(VONSEOWP_VERSION) . " - Premium SEO -->\n";
-
         // Basic Meta
         if ($desc !== '') echo '<meta name="description" content="' . esc_attr($desc) . '" />' . "\n";
         if ($keywords) echo '<meta name="keywords" content="' . esc_attr($keywords) . '" />' . "\n";
         echo '<link rel="canonical" href="' . esc_url($canonical) . '" />' . "\n";
-        echo '<meta name="generator" content="VonSEOWP ' . esc_attr(VONSEOWP_VERSION) . '" />' . "\n";
         
         if (!empty($options['google_verify'])) echo '<meta name="google-site-verification" content="' . esc_attr($options['google_verify']) . '" />' . "\n";
         if (!empty($options['bing_verify'])) echo '<meta name="msvalidate.01" content="' . esc_attr($options['bing_verify']) . '" />' . "\n";
@@ -177,12 +177,6 @@ class VonSEOWP_Frontend {
             echo '<meta property="og:url" content="' . esc_url($canonical) . '" />' . "\n";
             echo '<meta property="og:site_name" content="' . esc_attr(get_bloginfo('name')) . '" />' . "\n";
             if ($image) echo '<meta property="og:image" content="' . esc_url($image) . '" />' . "\n";
-            
-            // WhatsApp & Telegram specific (They use OG but sometimes need specific dimensions/hints)
-            if ($image) {
-                echo '<meta property="og:image:width" content="1200" />' . "\n";
-                echo '<meta property="og:image:height" content="630" />' . "\n";
-            }
 
             if (is_singular() && $post) {
                 echo '<meta property="article:published_time" content="' . esc_attr(get_the_date('c', $post)) . '" />' . "\n";
@@ -203,8 +197,6 @@ class VonSEOWP_Frontend {
         // LinkedIn (Uses OG, but specific tags help)
         $author = is_singular() && $post ? get_the_author_meta('display_name', (int) $post->post_author) : get_bloginfo('name');
         if ($author) echo '<meta name="author" content="' . esc_attr($author) . '" />' . "\n";
-
-        echo "<!-- /VonSEOWP -->\n\n";
     }
 
     public function output_json_ld() {

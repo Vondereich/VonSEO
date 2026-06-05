@@ -84,7 +84,8 @@ Yes. The sitemap system supports sitemap indexing and paginated sitemap output.
 
 ## 🗺️ Roadmap
 - [x] Lean local content analyzer (v2.3.4)
-- [ ] Score consistency across editor and All Posts (v2.3.5)
+- [x] Lean frontend meta output and social image fallback (v2.3.5)
+- [ ] Score consistency across editor and All Posts (v2.3.6)
 - [ ] Manual Local Site Audit Lite (v2.4)
 - [ ] Publisher schema variants after the lean audit path is proven
 
