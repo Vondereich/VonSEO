@@ -152,6 +152,8 @@ class VonSEOWP_Frontend {
         $canonical_path = $parsed_path ? ltrim($parsed_path, '/') : '';
         $canonical = !empty($options['canonical_host']) ? trailingslashit($options['canonical_host']) . $canonical_path : $url;
 
+        echo '<!-- Optimized by VonSEO -->' . "\n";
+
         // Basic Meta
         if ($desc !== '') echo '<meta name="description" content="' . esc_attr($desc) . '" />' . "\n";
         if ($keywords) echo '<meta name="keywords" content="' . esc_attr($keywords) . '" />' . "\n";
@@ -197,6 +199,7 @@ class VonSEOWP_Frontend {
         // LinkedIn (Uses OG, but specific tags help)
         $author = is_singular() && $post ? get_the_author_meta('display_name', (int) $post->post_author) : get_bloginfo('name');
         if ($author) echo '<meta name="author" content="' . esc_attr($author) . '" />' . "\n";
+        echo '<!-- /VonSEO -->' . "\n";
     }
 
     public function output_json_ld() {

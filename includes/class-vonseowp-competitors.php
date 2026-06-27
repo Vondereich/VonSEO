@@ -54,11 +54,17 @@ class VonSEOWP_Competitors {
     private function analyze_url(string $url) {
         $response = wp_safe_remote_get($url, array(
             'timeout' => 15,
+            'limit_response_size' => 1024 * 1024,
             'user-agent' => 'VonSEOWP-Bot/1.0 (Premium SEO Toolkit)'
         ));
 
         if (is_wp_error($response)) {
             return $response;
+        }
+
+        $content_type = (string) wp_remote_retrieve_header($response, 'content-type');
+        if ($content_type && !preg_match('/\b(text\/html|application\/xhtml\+xml)\b/i', $content_type)) {
+            return new WP_Error('invalid_content_type', __('The competitor URL did not return HTML content', 'vonseo'));
         }
 
         $html = wp_remote_retrieve_body($response);

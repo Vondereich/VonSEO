@@ -2,14 +2,24 @@
 
 All notable changes to the VonSEOWP plugin will be documented in this file.
 
+## [2.3.6] - 2026-06-28
+### Improved
+- **Score Consistency**: All Posts SEO score now uses lean metadata rules aligned with the editor analyzer where practical.
+- **Editorial Guidance**: Title and description warnings now distinguish missing, short, long, and near-range values more clearly.
+
+### Dev
+- Added regression coverage for deterministic All Posts score behavior.
 ## [2.3.5] - 2026-06-05
 ### Improved
 - **Lean Frontend Meta Output**: Removed the public generator tag and wrapper comments to reduce version exposure and head markup noise.
+- **Clean Frontend Branding**: Restored lightweight VonSEO head comments without exposing plugin version metadata.
 - **Social Image Fallback**: Uses the WordPress site icon as a fallback social image when no post image, featured image, or default social image is configured.
 - **Social Image Accuracy**: Removed fixed Open Graph image dimension tags so fallback icons are not described with incorrect dimensions.
+- **Competitor Scan Hardening**: Capped remote competitor responses and only parses HTML-like response content.
 
 ### Dev
 - Added a focused frontend meta regression test for lean public output and social image fallback.
+- Removed the obsolete root activation harness and added a security regression test for repo/package hygiene.
 
 ## [2.3.4] - 2026-06-05
 ### Added

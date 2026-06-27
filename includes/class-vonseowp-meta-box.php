@@ -31,7 +31,7 @@ class VonSEOWP_Meta_Box {
         wp_localize_script('vonseowp-metabox-js', 'vonseowp_metabox_data', array(
             'site_url' => home_url('/'),
             'analysis' => array(
-                'waiting_keyword' => __('Please set a focus keyword to start analysis.', 'vonseo'),
+                'waiting_keyword' => __('Add a focus keyword to start local SEO checks.', 'vonseo'),
                 'analyzing'       => __('Analyzing content...', 'vonseo'),
                 'optimal'         => __('optimal', 'vonseo'),
                 'acceptable'      => __('acceptable', 'vonseo'),
@@ -52,14 +52,18 @@ class VonSEOWP_Meta_Box {
                 'content_good'    => __('Content length is good (%d words).', 'vonseo'),
                 /* translators: %d: word count */
                 'content_short'   => __('Content is a bit short (%d words). Aim for 300+.', 'vonseo'),
-                'title_optimal'   => __('SEO Title length is optimal.', 'vonseo'),
-                'title_truncated' => __('SEO Title length is acceptable but might be truncated.', 'vonseo'),
-                /* translators: %s: status text */
-                'title_bad'       => __('SEO Title is %s.', 'vonseo'),
-                'desc_optimal'    => __('Meta description length is optimal.', 'vonseo'),
-                'desc_acceptable' => __('Meta description length is acceptable.', 'vonseo'),
-                /* translators: %s: status text */
-                'desc_bad'        => __('Meta description is %s.', 'vonseo'),
+                'title_optimal'    => __('SEO title length is optimal.', 'vonseo'),
+                'title_near_short' => __('SEO title is usable but a little short.', 'vonseo'),
+                'title_near_long'  => __('SEO title is usable but may be truncated.', 'vonseo'),
+                'title_missing'    => __('Add an SEO title for this post.', 'vonseo'),
+                'title_too_short'  => __('SEO title is too short to be useful.', 'vonseo'),
+                'title_too_long'   => __('SEO title is too long and likely to be truncated.', 'vonseo'),
+                'desc_optimal'     => __('Meta description length is optimal.', 'vonseo'),
+                'desc_near_short'  => __('Meta description is usable but a little short.', 'vonseo'),
+                'desc_near_long'   => __('Meta description is usable but may be truncated.', 'vonseo'),
+                'desc_missing'     => __('Add a meta description for search snippets.', 'vonseo'),
+                'desc_too_short'   => __('Meta description is too short to be useful.', 'vonseo'),
+                'desc_too_long'    => __('Meta description is too long and likely to be truncated.', 'vonseo'),
                 'headings_good'   => __('Heading structure supports the focus keyword.', 'vonseo'),
                 'headings_warn'   => __('Add clearer H2/H3 structure or include the focus keyword in a heading.', 'vonseo'),
                 'headings_bad'    => __('Add headings to structure this content.', 'vonseo'),

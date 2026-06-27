@@ -59,14 +59,14 @@ Goal: keep public head markup clean while preserving useful social preview tags.
 - [x] Add WordPress site icon fallback for social image tags.
 - [x] Keep site title casing under the owner's WordPress settings instead of mutating it in plugin output.
 
-## Next: v2.3.6 - Score Consistency and Editorial Polish
+## v2.3.6 - Score Consistency and Editorial Polish (Completed)
 
 Goal: make existing SEO scoring feel trustworthy across the admin UI.
 
-- [ ] Align the All Posts score column with the editor analyzer rules where practical.
-- [ ] Improve empty-state guidance without adding marketing copy.
-- [ ] Add clearer warnings for title and description length.
-- [ ] Keep score calculations local and deterministic.
+- [x] Align the All Posts score column with the editor analyzer rules where practical.
+- [x] Improve empty-state guidance without adding marketing copy.
+- [x] Add clearer warnings for title and description length.
+- [x] Keep score calculations local and deterministic.
 
 ## Later: v2.4 - Local Site Audit Lite
 

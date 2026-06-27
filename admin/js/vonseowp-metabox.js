@@ -112,12 +112,18 @@ jQuery(document).ready(function ($) {
           : messages.content_short.replace("%d", meta.wordCount || 0);
       case "title_length":
         if (check.status === "good") return messages.title_optimal;
-        if (check.status === "warn") return messages.title_truncated;
-        return messages.title_bad.replace("%s", (meta.length || 0) < 30 ? messages.too_short : messages.too_long);
+        if (check.status === "warn") {
+          return (meta.length || 0) < 45 ? messages.title_near_short : messages.title_near_long;
+        }
+        if ((meta.length || 0) === 0) return messages.title_missing;
+        return (meta.length || 0) < 30 ? messages.title_too_short : messages.title_too_long;
       case "description_length":
         if (check.status === "good") return messages.desc_optimal;
-        if (check.status === "warn") return messages.desc_acceptable;
-        return messages.desc_bad.replace("%s", (meta.length || 0) < 90 ? messages.too_short : messages.too_long);
+        if (check.status === "warn") {
+          return (meta.length || 0) < 120 ? messages.desc_near_short : messages.desc_near_long;
+        }
+        if ((meta.length || 0) === 0) return messages.desc_missing;
+        return (meta.length || 0) < 90 ? messages.desc_too_short : messages.desc_too_long;
       case "heading_structure":
         if (check.status === "good") return messages.headings_good;
         if (check.status === "warn") return messages.headings_warn;

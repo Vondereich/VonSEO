@@ -16,6 +16,11 @@ assert.ok(
 );
 
 assert.ok(
+  source.includes('<!-- Optimized by VonSEO -->') && source.includes('<!-- /VonSEO -->'),
+  'frontend meta output should include clean VonSEO branding comments without a version',
+);
+
+assert.ok(
   source.includes('get_site_icon_url(512)'),
   'frontend meta output should fall back to the WordPress site icon for social image tags',
 );

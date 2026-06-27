@@ -4,7 +4,7 @@ Tags: seo, toc, schema, sitemap, indexnow
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.3.5
+Stable tag: 2.3.6
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -88,6 +88,10 @@ Yes. VonSEO requires PHP 7.4+ and is fully optimized for PHP 8.2/8.3.
 
 == Changelog ==
 
+= 2.3.6 =
+*   Improved: All Posts SEO score now uses lean metadata rules aligned with the editor analyzer where practical.
+*   Improved: Title and description guidance now distinguishes missing, short, long, and near-range values more clearly.
+*   Dev: Added regression coverage for deterministic All Posts score behavior.
 = 2.3.5 =
 *   Improved: Removed the public generator tag and wrapper comments to keep frontend head output lean.
 *   Improved: Added a WordPress site icon fallback for social image tags when no post/default image is configured.

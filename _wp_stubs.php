@@ -341,6 +341,10 @@ if (!function_exists('wp_remote_retrieve_body')) {
     function wp_remote_retrieve_body(array|WP_Error $response): string { return ''; }
 }
 
+if (!function_exists('wp_remote_retrieve_header')) {
+    function wp_remote_retrieve_header(array|WP_Error $response, string $header): string { return ''; }
+}
+
 if (!function_exists('wp_enqueue_media')) {
     function wp_enqueue_media(array $args = array()): void {}
 }

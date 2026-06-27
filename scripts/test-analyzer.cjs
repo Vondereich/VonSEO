@@ -80,4 +80,17 @@ const waitingResult = analyzer.analyze({
 assert.strictEqual(waitingResult.score, 0);
 assert.strictEqual(waitingResult.waitingForKeyword, true);
 
+const emptyMetaResult = analyzer.analyze({
+  keyword: 'lightweight seo',
+  title: '',
+  description: '',
+  content: strongContent,
+  siteUrl: 'https://mysite.test',
+});
+
+assert.strictEqual(getCheck(emptyMetaResult, 'title_length').status, 'bad');
+assert.strictEqual(getCheck(emptyMetaResult, 'title_length').meta.length, 0);
+assert.strictEqual(getCheck(emptyMetaResult, 'description_length').status, 'bad');
+assert.strictEqual(getCheck(emptyMetaResult, 'description_length').meta.length, 0);
+
 console.log('Analyzer tests passed');

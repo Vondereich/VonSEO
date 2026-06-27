@@ -65,17 +65,65 @@ class VonSEOWP_Columns {
     }
 
     private function calculate_basic_score(int $post_id): int {
-        $title = get_post_meta($post_id, '_vonseowp_title', true);
-        $desc  = get_post_meta($post_id, '_vonseowp_description', true);
-        $kw    = get_post_meta($post_id, '_vonseowp_keywords', true);
-        
-        $score = 0;
-        if (!empty($title)) $score += 30;
-        if (!empty($desc)) $score += 30;
-        if (!empty($kw)) $score += 40;
+        $title = (string) get_post_meta($post_id, '_vonseowp_title', true);
+        $desc  = (string) get_post_meta($post_id, '_vonseowp_description', true);
+        $kw    = $this->get_focus_keyword((string) get_post_meta($post_id, '_vonseowp_keywords', true));
 
-        // More complex logic can be added here
-        return $score;
+        if ($kw === '') {
+            return 0;
+        }
+
+        $score = 0;
+        $score += $this->contains_focus_keyword($title, $kw) ? 25 : 0;
+        $score += $this->contains_focus_keyword($desc, $kw) ? 25 : 0;
+        $score += $this->score_title_length($title);
+        $score += $this->score_description_length($desc);
+
+        return min(100, $score);
+    }
+
+    private function get_focus_keyword(string $keywords): string {
+        $parts = explode(',', $keywords);
+        return trim($parts[0] ?? '');
+    }
+
+    private function contains_focus_keyword(string $text, string $keyword): bool {
+        $normalized_text = $this->normalize_search_text($text);
+        $normalized_keyword = $this->normalize_search_text($keyword);
+
+        if ($normalized_text === '' || $normalized_keyword === '') {
+            return false;
+        }
+
+        return preg_match('/(^| )' . preg_quote($normalized_keyword, '/') . '( |$)/', $normalized_text) === 1;
+    }
+
+    private function normalize_search_text(string $text): string {
+        $decoded = html_entity_decode(wp_strip_all_tags($text), ENT_QUOTES, 'UTF-8');
+        $normalized = preg_replace('/[^a-z0-9]+/i', ' ', strtolower($decoded));
+        return trim((string) preg_replace('/\s+/', ' ', (string) $normalized));
+    }
+
+    private function score_title_length(string $title): int {
+        $length = strlen(trim($title));
+        if ($length >= 45 && $length <= 63) {
+            return 25;
+        }
+        if ($length >= 30 && $length <= 70) {
+            return 18;
+        }
+        return $length > 0 ? 5 : 0;
+    }
+
+    private function score_description_length(string $desc): int {
+        $length = strlen(trim($desc));
+        if ($length >= 120 && $length <= 160) {
+            return 25;
+        }
+        if ($length >= 90 && $length <= 175) {
+            return 18;
+        }
+        return $length > 0 ? 5 : 0;
     }
 
     public function render_quick_edit_fields(string $column_name, string $post_type): void {
