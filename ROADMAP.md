@@ -68,16 +68,18 @@ Goal: make existing SEO scoring feel trustworthy across the admin UI.
 - [x] Add clearer warnings for title and description length.
 - [x] Keep score calculations local and deterministic.
 
-## Later: v2.4 - Local Site Audit Lite
+## v2.4.0 - Local Site Audit Lite (Completed)
 
 Goal: add a manual, privacy-safe audit screen for technical SEO checks that can run on shared hosting.
 
-- [ ] Manual scan only; no scheduled crawler by default.
-- [ ] Check sitemap availability, robots rules, homepage metadata, site visibility, and permalink health.
-- [ ] Sample posts/pages for missing titles, descriptions, noindex usage, and schema presence.
-- [ ] Cache scan results with transients.
-- [ ] Show actionable findings, not vanity scores.
-- [ ] Avoid crawling entire large sites in one request.
+- [x] Manual scan only; no scheduled crawler by default.
+- [x] Check sitemap configuration, robots rules, homepage metadata, site visibility, and permalink health.
+- [x] Scan up to 25 recently modified published posts/pages per request with Previous/Next batch navigation for complete coverage.
+- [x] Distinguish effective WordPress metadata fallbacks from genuinely missing metadata.
+- [x] Report noindex usage, image ALT gaps, and internal/external link observations.
+- [x] Cache compact scan results with a 12-hour transient.
+- [x] Show actionable findings, not vanity scores.
+- [x] Avoid HTTP crawling and external requests.
 
 ## Parking Lot
 

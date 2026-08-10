@@ -26,8 +26,28 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+
       - name: Install Dependencies
         run: npm install # Ensures package.json environment is ready
+
+      - name: Run Regression Tests
+        run: |
+          npm run test:analyzer
+          npm run test:frontend-meta
+          npm run test:security
+          npm run test:columns-score
+          npm run test:site-audit
+
+      - name: Lint Packaged PHP
+        run: |
+          find includes admin -type f -name '*.php' -print0 | xargs -0 -n1 php -l
+          php -l vonseo.php
+          php -l uninstall.php
+          php -l index.php
 
       - name: Run Build Script
         run: npm run release
@@ -37,7 +57,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            vonseowp-v*.zip
+            vonseo-v*.zip
           draft: false
           prerelease: false
           generate_release_notes: true

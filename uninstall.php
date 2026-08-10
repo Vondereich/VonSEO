@@ -25,6 +25,8 @@ foreach ($vonseowp_uninstall_options as $vonseowp_option) {
     delete_site_option($vonseowp_option); // For Multisite
 }
 
+delete_transient('vonseowp_site_audit_results');
+
 // 2. Delete Post Metadata
 global $wpdb;
 $vonseowp_meta_keys = array(

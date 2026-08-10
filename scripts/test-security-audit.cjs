@@ -68,4 +68,36 @@ assert(
   "All Posts columns file must use LF-only line endings.",
 );
 
+const siteAudit = read("includes/class-vonseowp-site-audit.php");
+assert(
+  /current_user_can\s*\(\s*['"]manage_options['"]\s*\)/.test(siteAudit),
+  "Site audit actions must require manage_options.",
+);
+assert(
+  /check_admin_referer\s*\(\s*['"]vonseowp_run_site_audit['"]\s*\)/.test(siteAudit),
+  "Site audit actions must verify their nonce.",
+);
+assert(
+  /private const MAX_POSTS\s*=\s*25/.test(siteAudit),
+  "Site audit must retain its bounded 25-post scan limit.",
+);
+assert(
+  /absint\s*\(\s*wp_unslash\s*\(\s*\$_POST\[['"]vonseowp_audit_page['"]\]/.test(siteAudit),
+  "Site audit batch input must be unslashed and converted to a non-negative integer.",
+);
+assert(
+  /'paged'\s*=>\s*\$page/.test(siteAudit) && /min\s*\(\s*\$page\s*,\s*\$pages\s*\)/.test(siteAudit),
+  "Site audit must use a clamped WordPress query page for bounded batch navigation.",
+);
+assert(
+  !/wp_(safe_)?remote_(get|post|request)\s*\(/.test(siteAudit),
+  "Site audit must remain local-only and avoid remote requests.",
+);
+
+const uninstall = read("uninstall.php");
+assert(
+  /delete_transient\s*\(\s*['"]vonseowp_site_audit_results['"]\s*\)/.test(uninstall),
+  "Uninstall must remove cached site audit results.",
+);
+
 console.log("Security audit regression tests passed");

@@ -65,24 +65,10 @@ jQuery(document).ready(function ($) {
     )
       return;
 
-    const home_url =
-      typeof vonseowp_admin_data !== "undefined"
-        ? vonseowp_admin_data.home_url
-        : window.location.origin;
-    const proRules = [
-      "User-agent: *",
-      "Disallow: /wp-admin/",
-      "Allow: /wp-admin/admin-ajax.php",
-      "Disallow: /wp-login.php",
-      "Disallow: /wp-register.php",
-      "Disallow: /?s=",
-      "Disallow: /search/",
-      "Disallow: /feed/",
-      "Disallow: /comments/feed/",
-      "Disallow: /xmlrpc.php",
-      "",
-      "Sitemap: " + home_url + "/sitemap.xml",
-    ].join("\n");
+    const proRules =
+      typeof vonseowp_admin_data !== "undefined" && vonseowp_admin_data.default_robots_txt
+        ? vonseowp_admin_data.default_robots_txt
+        : "User-agent: *";
 
     $("#vonseowp_robots_txt").val(proRules);
   });

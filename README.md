@@ -36,6 +36,7 @@ A clean, focused editorial workflow that stays out of your way until you need it
 
 ### 3. Safety & Health
 - **System Health Monitor**: Real-time technical diagnostics for your environment.
+- **Manual Site SEO Audit**: Local technical and content checks with safe Previous/Next navigation across 25-item batches.
 - **Redirect & Robots Manager**: Lightweight control over your site's navigation and crawling instructions.
 - **4-Layer Defense**: Strict Nonce verification, Capability checks, Sanitization, and Escaping at every layer.
 
@@ -86,7 +87,7 @@ Yes. The sitemap system supports sitemap indexing and paginated sitemap output.
 - [x] Lean local content analyzer (v2.3.4)
 - [x] Lean frontend meta output and social image fallback (v2.3.5)
 - [x] Score consistency across editor and All Posts (v2.3.6)
-- [ ] Manual Local Site Audit Lite (v2.4)
+- [x] Manual Local Site Audit Lite (v2.4.0)
 - [ ] Publisher schema variants after the lean audit path is proven
 
 ---

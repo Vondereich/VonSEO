@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       VonSEO
  * Description:       A lightweight, premium SEO toolkit. Features a modern dashboard, automated JSON-LD Schema, Open Graph, Twitter Cards, and per-post SEO controls without the bloat.
- * Version:           2.3.6
+ * Version:           2.4.0
  * Requires at least: 6.0
  * Tested up to:      7.0
  * Requires PHP:      7.4
@@ -36,7 +36,7 @@ if (version_compare(PHP_VERSION, '7.4', '<')) {
     return;
 }
 
-define('VONSEOWP_VERSION', '2.3.6');
+define('VONSEOWP_VERSION', '2.4.0');
 define('VONSEOWP_PATH', plugin_dir_path(__FILE__));
 define('VONSEOWP_URL', plugin_dir_url(__FILE__));
 
@@ -82,6 +82,7 @@ class VonSEOWP {
         new VonSEOWP_Columns();
         new VonSEOWP_RSS();
         new VonSEOWP_TOC();
+        new VonSEOWP_Site_Audit();
 
 
         // Only load Competitors module if required extensions are present.
@@ -129,6 +130,7 @@ require_once VONSEOWP_PATH . 'includes/class-vonseowp-breadcrumbs.php';
 require_once VONSEOWP_PATH . 'includes/class-vonseowp-columns.php';
 require_once VONSEOWP_PATH . 'includes/class-vonseowp-rss.php';
 require_once VONSEOWP_PATH . 'includes/class-vonseowp-toc.php';
+require_once VONSEOWP_PATH . 'includes/class-vonseowp-site-audit.php';
 
 
 // --- Theme Helpers ---

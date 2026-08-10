@@ -2,6 +2,29 @@
 
 All notable changes to the VonSEOWP plugin will be documented in this file.
 
+## [2.4.0] - 2026-08-10
+### Added
+- **Local Site SEO Audit**: Added a manual, local-only audit screen for technical settings and published content processed in safe 25-item batches.
+- **Complete Content Coverage**: Added Previous/Next batch navigation so large sites can audit all published posts and pages without one heavy request.
+- **Actionable Content Findings**: Reports effective metadata fallbacks, length issues, noindex usage, missing image ALT text, and missing internal or external links without sending content off-site.
+- **Audit Regression Coverage**: Added PHP fixtures for metadata fallback, link classification, batch clamping, ranges, and query bounds.
+
+### Improved
+- **Release Contract**: Preserved the shipped `vonseo/` plugin directory and added package verification for metadata, top-level folder, main plugin file, and development-file exclusions.
+- **Release QC**: GitHub releases now run Node and PHP regression checks plus packaged PHP lint before building the ZIP.
+- **Social Card Fallback**: Square WordPress site icons now use the standard Twitter summary card instead of claiming a large landscape image.
+- **Sitemap Ownership**: WordPress core sitemaps are disabled only while the VonSEO sitemap is enabled, keeping a single advertised sitemap endpoint.
+
+### Fixed
+- **Canonical Deduplication**: Removed the WordPress core singular canonical when VonSEO outputs its canonical tag.
+- **Subdirectory Robots Route**: Added the missing virtual `robots.txt` rewrite for WordPress installations hosted below the domain root.
+- **Robots and Sitemap Alignment**: Fresh installs now publish subdirectory-aware crawler paths and advertise the active VonSEO sitemap without requiring an initial settings save.
+- **Word-Safe Metadata**: Generated titles and descriptions now truncate at word boundaries after focus-keyword injection.
+- **Bounded Content Fallbacks**: Automatic content descriptions now decode HTML entities, normalize whitespace, and stay within 160 characters.
+
+### Security
+- **Bounded Manual Scan**: Audit runs require `manage_options`, a dedicated nonce, and never use background jobs, external requests, or custom database tables.
+
 ## [2.3.6] - 2026-06-28
 ### Improved
 - **Score Consistency**: All Posts SEO score now uses lean metadata rules aligned with the editor analyzer where practical.

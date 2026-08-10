@@ -664,7 +664,7 @@ if (false) {
                     <div class="von-form-group">
                         <label><?php esc_html_e('Robots.txt Content', 'vonseo'); ?></label>
                         <textarea name="vonseowp_settings[robots_txt]" id="vonseowp_robots_txt" class="von-input von-code-area" rows="15"><?php 
-                            echo esc_textarea($vonseowp_options['robots_txt'] ?? "User-agent: *\nDisallow: /wp-admin/\nAllow: /wp-admin/admin-ajax.php\nDisallow: /wp-login.php\nDisallow: /wp-register.php\nDisallow: /?s=\nDisallow: /search/\nDisallow: /feed/\nDisallow: /comments/feed/\nDisallow: /xmlrpc.php\n\nSitemap: " . home_url('/sitemap.xml')); 
+                            echo esc_textarea($vonseowp_options['robots_txt'] ?? VonSEOWP_Frontend::get_default_robots_txt());
                         ?></textarea>
                         <div class="von-form-desc"><?php esc_html_e('This content will override the default WordPress robots.txt output.', 'vonseo'); ?></div>
                     </div>

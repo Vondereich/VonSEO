@@ -4,7 +4,7 @@ Tags: seo, toc, schema, sitemap, indexnow
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.3.6
+Stable tag: 2.4.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -42,6 +42,7 @@ A clean, focused editorial workflow designed for speed and usability.
 
 #### 3. Safety & System Health
 *   **System Health Monitor**: Real-time technical diagnostics for your PHP environment and permalinks.
+*   **Manual Site SEO Audit**: Local technical and content checks with safe Previous/Next navigation across 25-item batches.
 *   **Redirect & Robots Manager**: Lightweight control over site navigation and crawling instructions.
 *   **Production-Ready Security**: Strict Nonce verification, Capability checks, and Sanitization at every layer.
 
@@ -87,6 +88,14 @@ Yes. VonSEO avoids custom tables and includes uninstall cleanup for its stored o
 Yes. VonSEO requires PHP 7.4+ and is fully optimized for PHP 8.2/8.3.
 
 == Changelog ==
+
+= 2.4.0 =
+*   New: Manual, local-only Site SEO Audit with safe 25-item batch navigation across all published posts and pages.
+*   New: Actionable checks for effective metadata fallbacks, noindex, image ALT text, and internal or external links.
+*   Improved: Release builds now verify the canonical `vonseo/` folder, synchronized metadata, required plugin files, and package exclusions.
+*   Fixed: Prevented duplicate singular canonicals, restored virtual robots.txt on subdirectory installs, and made generated metadata truncate at word boundaries.
+*   Improved: Site icon fallbacks now use the standard square Twitter summary card, while robots.txt and sitemap output stay aligned on fresh installs.
+*   Security: Audit runs require administrator capability and a dedicated nonce, with no remote requests or background scanner.
 
 = 2.3.6 =
 *   Improved: All Posts SEO score now uses lean metadata rules aligned with the editor analyzer where practical.

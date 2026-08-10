@@ -9,6 +9,7 @@ class VonSEOWP_Sitemap {
     public function __construct() {
         add_action('init', array($this, 'add_rewrite_rules'));
         add_filter('query_vars', array($this, 'add_query_vars'));
+        add_filter('wp_sitemaps_enabled', array($this, 'filter_core_sitemaps'));
         add_action('template_redirect', array($this, 'render_sitemap'));
         add_action('vonseowp_flush_sitemap', 'flush_rewrite_rules');
     }
@@ -22,6 +23,12 @@ class VonSEOWP_Sitemap {
         $vars[] = 'vonseowp_sitemap';
         $vars[] = 'vonseowp_sitemap_page';
         return $vars;
+    }
+
+    public function filter_core_sitemaps(bool $enabled): bool {
+        $options = get_option('vonseowp_settings', array());
+        $vonseo_enabled = !isset($options['enable_sitemap']) || (int) $options['enable_sitemap'] === 1;
+        return $vonseo_enabled ? false : $enabled;
     }
 
     public function render_sitemap(): void {

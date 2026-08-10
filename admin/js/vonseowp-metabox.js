@@ -1,4 +1,16 @@
 jQuery(document).ready(function ($) {
+  const truncateAtWordBoundary = (value, maxLength) => {
+    const text = String(value || "").replace(/\s+/g, " ").trim();
+    if (text.length <= maxLength) return text;
+
+    const slice = text.substring(0, maxLength - 3).trim();
+    const lastSpace = slice.lastIndexOf(" ");
+    const minimumBoundary = Math.floor(maxLength * 0.6);
+    const truncated = lastSpace >= minimumBoundary ? slice.substring(0, lastSpace) : slice;
+
+    return truncated.trim() + "...";
+  };
+
   // --- TABS LOGIC ---
   $(".von-meta-tab").on("click", function () {
     $(".von-meta-tab").removeClass("active");
@@ -15,7 +27,7 @@ jQuery(document).ready(function ($) {
     let slug = $("#sample-permalink a").text() || window.location.href;
 
     // Clean
-    if (desc.length > 160) desc = desc.substring(0, 160) + "...";
+    desc = truncateAtWordBoundary(desc, 160);
 
     // Social Fallbacks
     let socTitle = $("#vonseowp_social_title").val() || title;
@@ -277,7 +289,6 @@ jQuery(document).ready(function ($) {
         }
 
         result = cleanText(candidate);
-        if (result.length > 60) result = result.substring(0, 60).trim() + "...";
       } else if (type === "desc") {
         // Strategy: Find a substantial paragraph that IS NOT the title/heading AND NOT metadata
         let titleText = cleanText($html.find("h1, h2").text());
@@ -331,7 +342,6 @@ jQuery(document).ready(function ($) {
           result = fullText;
         }
 
-        if (result.length > 160) result = result.substring(0, 157) + "...";
       } else if (type === "keywords") {
         // Cleaning & Density Analysis
         // Replace punctuation with spaces to avoid "Tehran/Washington" -> "tehranwashington"
@@ -455,6 +465,9 @@ jQuery(document).ready(function ($) {
           result = focusKw + ": " + result;
         }
       }
+
+      if (type === "title") result = truncateAtWordBoundary(result, 60);
+      if (type === "desc") result = truncateAtWordBoundary(result, 160);
 
       if (type === "keywords")
         $("#vonseowp_keywords").val(result).trigger("input");

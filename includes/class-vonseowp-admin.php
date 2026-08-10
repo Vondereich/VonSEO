@@ -111,6 +111,7 @@ class VonSEOWP_Admin {
             'site_name' => get_bloginfo('name'),
             'site_desc' => get_bloginfo('description'),
             'home_url'  => home_url(),
+            'default_robots_txt' => VonSEOWP_Frontend::get_default_robots_txt(),
             'confirm_reset_robots' => __('Are you sure you want to reset robots.txt to recommended Pro rules?', 'vonseo'),
             'confirm_reset_llm'    => __('Are you sure you want to reset llms.txt to the recommended AEO template?', 'vonseo'),
             'llm_template' => array(

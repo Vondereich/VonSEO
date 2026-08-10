@@ -16,13 +16,19 @@ class VonSEOWP_Frontend {
         add_action('wp_head', array($this, 'output_meta_tags'), 1);
         add_action('wp_head', array($this, 'output_json_ld'), 99);
         add_filter('robots_txt', array($this, 'handle_robots_txt'), 99, 2);
+        add_action('init', array($this, 'add_robots_rewrite_rule'));
         add_action('wp_enqueue_scripts', array($this, 'enqueue_assets'));
         add_action('wp_head', array($this, 'force_remove_wp_robots'), 0);
+        remove_action('wp_head', 'rel_canonical');
         remove_action('wp_head', 'wp_generator');
     }
 
     public function force_remove_wp_robots(): void {
         remove_action('wp_head', 'wp_robots', 1);
+    }
+
+    public function add_robots_rewrite_rule(): void {
+        add_rewrite_rule('robots\.txt$', 'index.php?robots=1', 'top');
     }
 
     public function enqueue_assets(): void {
@@ -92,6 +98,7 @@ class VonSEOWP_Frontend {
         $desc = $home_desc !== '' ? $home_desc : get_bloginfo('description');
         $keywords = $options['keywords'] ?? '';
         $image = $options['default_image'] ?? '';
+        $image_is_site_icon = false;
         $url = $this->get_canonical_url();
         $type = 'website';
         $noindex = false;
@@ -116,7 +123,7 @@ class VonSEOWP_Frontend {
             } elseif (has_excerpt($post->ID)) {
                 $desc = get_the_excerpt($post->ID);
             } else {
-                $desc = wp_trim_words(strip_shortcodes($post->post_content), 30, '...');
+                $desc = self::get_content_fallback_description((string) $post->post_content);
             }
             if ($custom_keywords) $keywords = $custom_keywords;
             if ($custom_image) {
@@ -142,6 +149,7 @@ class VonSEOWP_Frontend {
         $desc = trim(wp_strip_all_tags($desc));
         if (!$image && has_site_icon()) {
             $image = get_site_icon_url(512);
+            $image_is_site_icon = true;
         }
         
         $parsed_path = wp_parse_url($url, PHP_URL_PATH);
@@ -186,7 +194,7 @@ class VonSEOWP_Frontend {
             }
 
             // Twitter Cards
-            echo '<meta name="twitter:card" content="' . ($image ? 'summary_large_image' : 'summary') . '" />' . "\n";
+            echo '<meta name="twitter:card" content="' . ($image && !$image_is_site_icon ? 'summary_large_image' : 'summary') . '" />' . "\n";
             echo '<meta name="twitter:title" content="' . esc_attr($social_title ?: $title) . '" />' . "\n";
             if ($og_desc !== '') echo '<meta name="twitter:description" content="' . esc_attr($og_desc) . '" />' . "\n";
             if ($image) echo '<meta name="twitter:image" content="' . esc_url($image) . '" />' . "\n";
@@ -278,7 +286,7 @@ class VonSEOWP_Frontend {
         // 3. BlogPosting (for singular posts/pages)
         if (is_singular() && $post) {
             $custom_desc = get_post_meta($post->ID, '_vonseowp_description', true);
-            $desc = $custom_desc ?: wp_trim_words($post->post_content, 25, '...');
+            $desc = $custom_desc ?: self::get_content_fallback_description((string) $post->post_content);
             $image_url = '';
             
             $custom_image = get_post_meta($post->ID, '_vonseowp_image', true);
@@ -431,10 +439,70 @@ class VonSEOWP_Frontend {
      * Handle Robots.txt output
      */
     public function handle_robots_txt(string $output, bool $public): string {
+        if (!$public) {
+            return $output;
+        }
+
         $options = get_option('vonseowp_settings', array());
         if (!empty($options['robots_txt'])) {
             return $options['robots_txt'];
         }
+
+        $sitemap_enabled = !isset($options['enable_sitemap']) || (int) $options['enable_sitemap'] === 1;
+        if ($sitemap_enabled) {
+            return self::get_default_robots_txt();
+        }
+
         return $output;
+    }
+
+    public static function get_default_robots_txt(): string {
+        $home_path = (string) wp_parse_url(home_url('/'), PHP_URL_PATH);
+        $prefix = '/' === $home_path ? '' : untrailingslashit($home_path);
+
+        return implode("\n", array(
+            'User-agent: *',
+            'Disallow: ' . $prefix . '/wp-admin/',
+            'Allow: ' . $prefix . '/wp-admin/admin-ajax.php',
+            'Disallow: ' . $prefix . '/wp-login.php',
+            'Disallow: ' . $prefix . '/wp-register.php',
+            'Disallow: ' . $prefix . '/?s=',
+            'Disallow: ' . $prefix . '/search/',
+            'Disallow: ' . $prefix . '/feed/',
+            'Disallow: ' . $prefix . '/comments/feed/',
+            'Disallow: ' . $prefix . '/xmlrpc.php',
+            '',
+            'Sitemap: ' . home_url('/sitemap.xml'),
+        ));
+    }
+
+    public static function get_content_fallback_description(string $content): string {
+        $text = wp_strip_all_tags(strip_shortcodes($content));
+        $charset = (string) get_bloginfo('charset');
+        $text = html_entity_decode($text, ENT_QUOTES | ENT_HTML5, $charset !== '' ? $charset : 'UTF-8');
+        $normalized = preg_replace('/\s+/u', ' ', $text);
+        $text = trim(is_string($normalized) ? $normalized : $text);
+        $max_length = 160;
+        $length = function_exists('mb_strlen') ? mb_strlen($text, 'UTF-8') : strlen($text);
+
+        if ($length <= $max_length) {
+            return $text;
+        }
+
+        $slice_length = $max_length - 3;
+        $slice = function_exists('mb_substr')
+            ? mb_substr($text, 0, $slice_length, 'UTF-8')
+            : substr($text, 0, $slice_length);
+        $last_space = function_exists('mb_strrpos')
+            ? mb_strrpos($slice, ' ', 0, 'UTF-8')
+            : strrpos($slice, ' ');
+
+        if (false !== $last_space && $last_space >= (int) floor($max_length * 0.6)) {
+            $slice = function_exists('mb_substr')
+                ? mb_substr($slice, 0, $last_space, 'UTF-8')
+                : substr($slice, 0, $last_space);
+        }
+
+        return rtrim($slice) . '...';
     }
 }
