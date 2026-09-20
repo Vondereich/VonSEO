@@ -2,9 +2,9 @@
 Contributors: vondereich, kurama87
 Tags: seo, toc, schema, sitemap, indexnow
 Requires at least: 6.0
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 2.4.0
+Stable tag: 2.4.1
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -88,6 +88,11 @@ Yes. VonSEO avoids custom tables and includes uninstall cleanup for its stored o
 Yes. VonSEO requires PHP 7.4+ and is fully optimized for PHP 8.2/8.3.
 
 == Changelog ==
+
+= 2.4.1 =
+*   Fixed: Escaped the final formatted Site Audit batch pagination label for WordPress Coding Standards compliance.
+*   Improved: Confirmed compatibility with WordPress 7.1 and updated the Tested up to metadata.
+*   Dev: Added regression coverage for the pagination output escaping contract.
 
 = 2.4.0 =
 *   New: Manual, local-only Site SEO Audit with safe 25-item batch navigation across all published posts and pages.

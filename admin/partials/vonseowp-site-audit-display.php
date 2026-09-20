@@ -214,11 +214,13 @@ if ($vonseowp_has_results && isset($vonseowp_audit_results['issue_counts']) && i
 
                     <span class="von-audit-page-number">
                         <?php
-                        printf(
-                            /* translators: 1: current batch number, 2: total number of batches */
-                            esc_html__('Batch %1$d of %2$d', 'vonseo'),
-                            $vonseowp_current_page,
-                            $vonseowp_total_pages
+                        echo esc_html(
+                            sprintf(
+                                /* translators: 1: current batch number, 2: total number of batches */
+                                __('Batch %1$d of %2$d', 'vonseo'),
+                                $vonseowp_current_page,
+                                $vonseowp_total_pages
+                            )
                         );
                         ?>
                     </span>

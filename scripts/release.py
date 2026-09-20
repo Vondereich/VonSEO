@@ -42,6 +42,11 @@ def validate_metadata(version):
     stable_match = re.search(r"^Stable tag:\s*([\d.]+)\s*$", read_text("readme.txt"), re.MULTILINE)
     stable_version = stable_match.group(1) if stable_match else ""
 
+    plugin_tested_match = re.search(r"Tested up to:\s*([\d.]+)", plugin_source)
+    plugin_tested_version = plugin_tested_match.group(1) if plugin_tested_match else ""
+    readme_tested_match = re.search(r"^Tested up to:\s*([\d.]+)\s*$", read_text("readme.txt"), re.MULTILINE)
+    readme_tested_version = readme_tested_match.group(1) if readme_tested_match else ""
+
     changelog_has_version = f"## [{version}]" in read_text("CHANGELOG.md")
     mismatches = []
     if constant_version != version:
@@ -50,6 +55,14 @@ def validate_metadata(version):
         mismatches.append(f"package.json={package_version or 'missing'}")
     if stable_version != version:
         mismatches.append(f"readme.txt={stable_version or 'missing'}")
+    if not plugin_tested_version:
+        mismatches.append("vonseo.php Tested up to missing")
+    if not readme_tested_version:
+        mismatches.append("readme.txt Tested up to missing")
+    if plugin_tested_version and readme_tested_version and plugin_tested_version != readme_tested_version:
+        mismatches.append(
+            f"Tested up to mismatch: vonseo.php={plugin_tested_version}, readme.txt={readme_tested_version}"
+        )
     if not changelog_has_version:
         mismatches.append("CHANGELOG.md entry missing")
 

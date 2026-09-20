@@ -81,6 +81,14 @@ Goal: add a manual, privacy-safe audit screen for technical SEO checks that can 
 - [x] Show actionable findings, not vanity scores.
 - [x] Avoid HTTP crawling and external requests.
 
+## v2.4.1 - WordPress.org Compliance Hotfix (Ready for Release)
+
+Goal: clear the remaining WordPress Plugin Check output without changing Site Audit behavior.
+
+- [x] Escape the final formatted `Batch %1$d of %2$d` pagination label in the Site Audit screen.
+- [x] Re-run WordPress Plugin Check against the packaged plugin and require zero escaping errors.
+- [ ] Publish the fix as a new `2.4.1` release instead of modifying the existing `2.4.0` tag.
+
 ## Parking Lot
 
 These may be useful, but should not be built until the lean analyzer and local audit are proven.

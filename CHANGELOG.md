@@ -2,6 +2,16 @@
 
 All notable changes to the VonSEOWP plugin will be documented in this file.
 
+## [2.4.1] - 2026-09-20
+### Fixed
+- **Site Audit Pagination Escaping**: Escaped the final formatted batch label to clear the remaining WordPress Coding Standards output warning without changing pagination behavior.
+
+### Improved
+- **WordPress 7.1 Compatibility**: Confirmed the hotfix on WordPress 7.1.1 and updated the plugin compatibility metadata to WordPress 7.1.
+
+### Dev
+- Added regression coverage for the Site Audit pagination output escaping contract and release validation for synchronized `Tested up to` headers.
+
 ## [2.4.0] - 2026-08-10
 ### Added
 - **Local Site SEO Audit**: Added a manual, local-only audit screen for technical settings and published content processed in safe 25-item batches.

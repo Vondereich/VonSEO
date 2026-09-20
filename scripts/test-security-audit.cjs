@@ -94,6 +94,12 @@ assert(
   "Site audit must remain local-only and avoid remote requests.",
 );
 
+const siteAuditDisplay = read("admin/partials/vonseowp-site-audit-display.php");
+assert(
+  /echo\s+esc_html\s*\(\s*sprintf\s*\([\s\S]*?Batch %1\$d of %2\$d/.test(siteAuditDisplay),
+  "Site audit must escape the final formatted batch pagination label.",
+);
+
 const uninstall = read("uninstall.php");
 assert(
   /delete_transient\s*\(\s*['"]vonseowp_site_audit_results['"]\s*\)/.test(uninstall),
