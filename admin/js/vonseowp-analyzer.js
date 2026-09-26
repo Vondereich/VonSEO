@@ -23,11 +23,11 @@
   const decodeEntities = (value) =>
     String(value || "")
       .replace(/&nbsp;/gi, " ")
-      .replace(/&amp;/gi, "&")
       .replace(/&lt;/gi, "<")
       .replace(/&gt;/gi, ">")
       .replace(/&quot;/gi, '"')
-      .replace(/&#39;/gi, "'");
+      .replace(/&#39;/gi, "'")
+      .replace(/&amp;/gi, "&");
 
   const stripHtml = (html) =>
     decodeEntities(html)
